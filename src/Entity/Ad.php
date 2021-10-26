@@ -41,7 +41,7 @@ class Ad
     private $dogs;
 
     /**
-     * @ORM\ManyToOne(targetEntity=marketer::class, inversedBy="ads")
+     * @ORM\ManyToOne(targetEntity=Marketer::class, inversedBy="ads")
      * @ORM\JoinColumn(nullable=false)
      */
     private $marketer;
@@ -122,12 +122,12 @@ class Ad
         return $this;
     }
 
-    public function getMarketer(): ?marketer
+    public function getMarketer(): ?Marketer
     {
         return $this->marketer;
     }
 
-    public function setMarketer(?marketer $marketer): self
+    public function setMarketer(?Marketer $marketer): self
     {
         $this->marketer = $marketer;
 
