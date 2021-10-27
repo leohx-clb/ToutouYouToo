@@ -59,6 +59,16 @@ class Dog
      */
     private $demands;
 
+    /**
+     * @ORM\Column(type="string", length=50)
+     */
+    private $name;
+
+    /**
+     * @ORM\Column(type="string", length=50)
+     */
+    private $sex;
+
     public function __construct()
     {
         $this->pictures = new ArrayCollection();
@@ -208,6 +218,30 @@ class Dog
         if ($this->demands->removeElement($demand)) {
             $demand->removeDog($this);
         }
+
+        return $this;
+    }
+
+    public function getName(): ?string
+    {
+        return $this->name;
+    }
+
+    public function setName(string $name): self
+    {
+        $this->name = $name;
+
+        return $this;
+    }
+
+    public function getSex(): ?string
+    {
+        return $this->sex;
+    }
+
+    public function setSex(string $sex): self
+    {
+        $this->sex = $sex;
 
         return $this;
     }
