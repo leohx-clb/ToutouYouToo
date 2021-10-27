@@ -3,7 +3,6 @@
 namespace App\DataFixtures;
 
 use App\Entity\Adopting;
-use App\Entity\Marketer;
 use App\Repository\CityRepository;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
@@ -11,7 +10,7 @@ use Doctrine\Persistence\ObjectManager;
 
 class AdoptingFixtures extends Fixture implements DependentFixtureInterface
 {
-    protected $cityRepository;
+    protected CityRepository $cityRepository;
 
     public function __construct(CityRepository $cityRepository)
     {

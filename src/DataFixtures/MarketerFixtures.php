@@ -4,17 +4,20 @@ namespace App\DataFixtures;
 
 use App\Entity\Marketer;
 use App\Repository\CityRepository;
+use App\Repository\TypeMarketerRepository;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 use Doctrine\Persistence\ObjectManager;
 
 class MarketerFixtures extends Fixture implements DependentFixtureInterface
 {
-    protected $cityRepository;
+    protected CityRepository $cityRepository;
+    protected TypeMarketerRepository $typeMarketerRepository;
 
-    public function __construct(CityRepository $cityRepository)
+    public function __construct(CityRepository $cityRepository, TypeMarketerRepository $typeMarketerRepository)
     {
        $this->cityRepository = $cityRepository;
+       $this->typeMarketerRepository = $typeMarketerRepository;
     }
 
     public function load(ObjectManager $manager): void
@@ -37,6 +40,7 @@ class MarketerFixtures extends Fixture implements DependentFixtureInterface
                 'name' => 'Mick Jagger']
          ];
         $cities = $this->cityRepository->findAll();
+        $typeMarketers = $this->typeMarketerRepository->findAll();
         $i=0;
         foreach ($marketers as $marketer){
         $mk = new Marketer();
@@ -47,7 +51,10 @@ class MarketerFixtures extends Fixture implements DependentFixtureInterface
             $mk->setIsAdministrator(false);
             $mk->setcity($cities[$i]);
             $mk->setName($marketer['name']);
-
+            if ($i<=1)
+                $mk->setTypeMarketer($typeMarketers[0]);
+            else
+                $mk->setTypeMarketer($typeMarketers[1]);
             $i++;
             $manager->persist($mk);
         }
@@ -62,6 +69,7 @@ class MarketerFixtures extends Fixture implements DependentFixtureInterface
         // TODO: Implement getDependencies() method.
         return [
             CityFixtures::class,
+            TypeMarketerFixtures::class
         ];
     }
 }
