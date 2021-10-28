@@ -63,4 +63,16 @@ class Adopting extends User
 
         return $this;
     }
+
+    /**
+     * @see UserInterface
+     */
+    public function getRoles(): array
+    {
+        $roles = parent::getRoles();
+        // guarantee every user at least has ROLE_USER
+        $roles[] = 'ROLE_ADOPTING';
+
+        return array_unique($roles);
+    }
 }
