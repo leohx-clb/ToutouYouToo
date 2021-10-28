@@ -28,7 +28,7 @@ class AdoptingController extends AbstractController
             $em->persist($adopting);
             $em->flush();
 
-            return $this->redirectToRoute('adopting');
+            return $this->redirectToRoute('app_login');
         }
 
 
