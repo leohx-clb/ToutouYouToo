@@ -1,5 +1,13 @@
 security:
     enable_authenticator_manager: true
+
+    # definie la hierarchy des role ex admin a aussi les droit que adopting et markerter on
+    role_hierarchy:
+        ROLE_ADMIN: [ ROLE_ADOPTING, ROLE_MARKETER ]
+        ROLE_ADOPTING: ROLE_USER
+        ROLE_MARKETER: ROLE_USER
+        ROLE_SUPER_ADMIN: [ ROLE_ADMIN, ROLE_ALLOWED_TO_SWITCH ]
+
     # https://symfony.com/doc/current/security.html#registering-the-user-hashing-passwords
     password_hashers:
         Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface: 'auto'
@@ -20,6 +28,11 @@ security:
         main:
             lazy: true
             provider: app_user_provider
+            custom_authenticator: App\Security\LoginFormAuthenticator
+            logout:
+                path: app_logout
+                # where to redirect after logout
+                # target: app_any_route
 
             # activate different ways to authenticate
             # https://symfony.com/doc/current/security.html#the-firewall

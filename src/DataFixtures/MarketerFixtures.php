@@ -8,16 +8,18 @@ use App\Repository\TypeMarketerRepository;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 use Doctrine\Persistence\ObjectManager;
+use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 
 class MarketerFixtures extends Fixture implements DependentFixtureInterface
 {
     protected CityRepository $cityRepository;
     protected TypeMarketerRepository $typeMarketerRepository;
 
-    public function __construct(CityRepository $cityRepository, TypeMarketerRepository $typeMarketerRepository)
+    public function __construct(CityRepository $cityRepository, TypeMarketerRepository $typeMarketerRepository, UserPasswordHasherInterface $hasher)
     {
        $this->cityRepository = $cityRepository;
        $this->typeMarketerRepository = $typeMarketerRepository;
+       $this->hasher = $hasher;
     }
 
     public function load(ObjectManager $manager): void
@@ -47,7 +49,9 @@ class MarketerFixtures extends Fixture implements DependentFixtureInterface
             $mk->setFirstName($marketer['firstName']);
             $mk->setlastName($marketer['lastName']);
             $mk->setEmail($marketer['email']);
-            $mk->setpassword($marketer['password']);
+            //hash le mot de passe
+            $pwd = $this->hasher->hashPassword($mk, $marketer['password']);
+            $mk->setpassword($pwd);
             $mk->setIsAdministrator(false);
             $mk->setcity($cities[$i]);
             $mk->setName($marketer['name']);
