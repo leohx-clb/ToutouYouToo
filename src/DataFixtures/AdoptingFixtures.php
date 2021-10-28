@@ -7,19 +7,22 @@ use App\Repository\CityRepository;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 use Doctrine\Persistence\ObjectManager;
+use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 
 class AdoptingFixtures extends Fixture implements DependentFixtureInterface
 {
     protected CityRepository $cityRepository;
+    protected UserPasswordHasherInterface $hasher;
 
-    public function __construct(CityRepository $cityRepository)
+    public function __construct(CityRepository $cityRepository, UserPasswordHasherInterface $hasher)
     {
        $this->cityRepository = $cityRepository;
+        $this->hasher = $hasher;
     }
 
     public function load(ObjectManager $manager): void
     {
-        $marketers = [
+        $adoptings = [
             ['lastName'=> 'Redford',
                 'firstName' => 'Robert',
                 'email' => 'robert.redford@gmail.com',
@@ -38,17 +41,18 @@ class AdoptingFixtures extends Fixture implements DependentFixtureInterface
          ];
         $cities = $this->cityRepository->findAll();
         $i=0;
-        foreach ($marketers as $marketer){
-        $mk = new Adopting();
-            $mk->setFirstName($marketer['firstName']);
-            $mk->setlastName($marketer['lastName']);
-            $mk->setEmail($marketer['email']);
-            $mk->setpassword($marketer['password']);
-            $mk->setIsAdministrator(false);
-            $mk->setcity($cities[$i]);
-
+        foreach ($adoptings as $adopting){
+        $ad = new Adopting();
+            $ad->setFirstName($adopting['firstName']);
+            $ad->setlastName($adopting['lastName']);
+            $ad->setEmail($adopting['email']);
+            //hash le mot de passe
+            $pwd = $this->hasher->hashPassword($ad, $adopting['password']);
+            $ad->setpassword($pwd);
+            $ad->setIsAdministrator(false);
+            $ad->setcity($cities[$i]);
             $i++;
-            $manager->persist($mk);
+            $manager->persist($ad);
         }
         // $product = new Product();
         // $manager->persist($product);
