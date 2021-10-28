@@ -36,13 +36,13 @@ class Demand
     private $adopting;
 
     /**
-     * @ORM\ManyToOne(targetEntity=ad::class)
+     * @ORM\ManyToOne(targetEntity=Ad::class)
      * @ORM\JoinColumn(nullable=false)
      */
     private $ad;
 
     /**
-     * @ORM\ManyToMany(targetEntity=dog::class, inversedBy="demands")
+     * @ORM\ManyToMany(targetEntity=Dog::class, inversedBy="demands")
      */
     private $dogs;
 
@@ -111,12 +111,12 @@ class Demand
         return $this;
     }
 
-    public function getAd(): ?ad
+    public function getAd(): ?Ad
     {
         return $this->ad;
     }
 
-    public function setAd(?ad $ad): self
+    public function setAd(?Ad $ad): self
     {
         $this->ad = $ad;
 
@@ -124,14 +124,14 @@ class Demand
     }
 
     /**
-     * @return Collection|dog[]
+     * @return Collection|Dog[]
      */
     public function getDogs(): Collection
     {
         return $this->dogs;
     }
 
-    public function addDog(dog $dog): self
+    public function addDog(Dog $dog): self
     {
         if (!$this->dogs->contains($dog)) {
             $this->dogs[] = $dog;
@@ -140,7 +140,7 @@ class Demand
         return $this;
     }
 
-    public function removeDog(dog $dog): self
+    public function removeDog(Dog $dog): self
     {
         $this->dogs->removeElement($dog);
 

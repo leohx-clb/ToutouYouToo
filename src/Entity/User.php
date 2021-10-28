@@ -53,7 +53,7 @@ abstract class User implements UserInterface, PasswordAuthenticatedUserInterface
     /**
      * @ORM\Column(type="boolean")
      */
-    private $isAdministrator;
+    private $isAdministrator = false;
 
     /**
      * @ORM\Column(type="json")
