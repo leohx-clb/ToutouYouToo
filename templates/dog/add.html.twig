@@ -1,0 +1,24 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Ajouter un Toutou{% endblock %}
+
+{% block body %}
+
+    {{ form_start(form) }}
+        {{ form_row(form.history) }}
+        {{ form_row(form.lof) }}
+        {{ form_row(form.description) }}
+        {{ form_row(form.animalsFriendly) }}
+        {{ form_row(form.name) }}
+        {{ form_row(form.sex) }}
+        {{ form_row(form.races) }}
+
+
+        {% if form.submit is defined %}
+        {{ form_row(form.submit) }}
+        {% endif %}
+
+        <button type="submit" class="btn btn-primary">Valider</button>
+    {{ form_end(form) }}
+
+{% endblock %}
