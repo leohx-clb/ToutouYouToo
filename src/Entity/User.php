@@ -45,7 +45,7 @@ abstract class User implements UserInterface, PasswordAuthenticatedUserInterface
     private $password;
 
     /**
-     * @ORM\ManyToOne(targetEntity=city::class, inversedBy="users")
+     * @ORM\ManyToOne(targetEntity=City::class, inversedBy="users")
      * @ORM\JoinColumn(nullable=false)
      */
     private $city;
@@ -53,7 +53,7 @@ abstract class User implements UserInterface, PasswordAuthenticatedUserInterface
     /**
      * @ORM\Column(type="boolean")
      */
-    private $isAdministrator;
+    private $isAdministrator = false;
 
     /**
      * @ORM\Column(type="json")
@@ -113,12 +113,12 @@ abstract class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-    public function getCity(): ?city
+    public function getCity(): ?City
     {
         return $this->city;
     }
 
-    public function setCity(?city $city): self
+    public function setCity(?City $city): self
     {
         $this->city = $city;
 
