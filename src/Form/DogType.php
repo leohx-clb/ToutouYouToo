@@ -3,6 +3,7 @@
 namespace App\Form;
 
 use App\Entity\Dog;
+use App\Entity\Picture;
 use App\Entity\Race;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
@@ -16,7 +17,7 @@ class DogType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
-        $buil
+        $builder
             ->add('history',TextareaType::class , [
                 'label' => 'Historique ',
                 'required' => false,
@@ -44,6 +45,11 @@ class DogType extends AbstractType
                 'multiple' => true,
                 'expanded' => true
             ])
+            /*->add('pictures', EntityType::class, [
+                'label' => 'Url Image',
+                'class' => Picture::class,
+
+            ])*/
         ;
     }
 

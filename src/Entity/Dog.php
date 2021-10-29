@@ -38,8 +38,12 @@ class Dog
 
     /**
      * @ORM\Column(type="string", length=255)
-     * @Assert\NotBlank()
-     * @Assert\Length(min=10)
+     * @Assert\NotBlank(message="La description ne peut pas être vide")
+     * @Assert\Length(
+     *     min="20",
+     *     max="255",
+     *     minMessage="La description doit comporter au moins 20 caractéres",
+     *     maxMessage="La description ne doit pas comporter au plus 255 caractéres")
      */
     private ?string $description;
 
@@ -66,12 +70,22 @@ class Dog
     /**
      * @ORM\Column(type="string", length=50)
      * @Assert\NotBlank()
-     * @Assert\Length(min=2)
+     * @Assert\Length(
+     *     min="3",
+     *     max="50",
+     *     minMessage="Le nom doit comporter au moins 3 caractéres",
+     *     maxMessage="Le nom ne doit pas comporter au plus 50 caractéres")
      */
     private ?string $name;
 
     /**
      * @ORM\Column(type="string", length=10)
+     * @Assert\NotBlank(message="Le sexe doit être renseigné male/femelle/inconnu")
+     * @Assert\Length(
+     *     min="4",
+     *     max="8",
+     *     minMessage="Le nom doit comporter au moins 4 caractéres",
+     *     maxMessage="Le nom ne doit pas comporter au plus 50 caractéres")
      */
     private ?string $sex;
 

@@ -7,13 +7,19 @@
     <div  class="col-6">
         <h2> Ajouter un Chien</h2>
     {{ form_start(form) }}
-        {{ form_row(form.history) }}
-        {{ form_row(form.lof) }}
-        {{ form_row(form.description) }}
-        {{ form_row(form.animalsFriendly) }}
         {{ form_row(form.name) }}
         {{ form_row(form.sex) }}
         {{ form_row(form.races) }}
+        {{ form_row(form.lof) }}
+        {{ form_row(form.description) }}
+        {{ form_row(form.history) }}
+        {{ form_row(form.animalsFriendly) }}
+        <h3>Importez une Image</h3>
+       <div class="d-flex justify-content-center mt-4">
+           <img src="http://placehold.it/300x300" alt="" >
+       </div>
+
+
 
 
 

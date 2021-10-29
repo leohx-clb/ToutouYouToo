@@ -24,12 +24,12 @@ class Race
      * @ORM\Column(type="string", length=50)
      * @Assert\Length(min=2)
      */
-    private $name;
+    private ?string $name;
 
     /**
      * @ORM\ManyToMany(targetEntity=Dog::class, mappedBy="races")
      */
-    private $dogs;
+    private Collection $dogs;
 
     public function __construct()
     {
