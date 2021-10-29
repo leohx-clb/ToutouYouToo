@@ -91,6 +91,11 @@ abstract class User implements UserInterface, PasswordAuthenticatedUserInterface
      */
     private $roles = [];
 
+    /**
+     * @ORM\Column(type="string", length=10, nullable=true)
+     */
+    private $phone;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -214,6 +219,7 @@ abstract class User implements UserInterface, PasswordAuthenticatedUserInterface
      *
      * @see UserInterface
      */
+
     public function getSalt(): ?string
     {
         return null;
@@ -226,5 +232,17 @@ abstract class User implements UserInterface, PasswordAuthenticatedUserInterface
     {
         // If you store any temporary, sensitive data on the user, clear it here
         // $this->plainPassword = null;
+    }
+
+    public function getPhone(): ?string
+    {
+        return $this->phone;
+    }
+
+    public function setPhone(?string $phone): self
+    {
+        $this->phone = $phone;
+
+        return $this;
     }
 }

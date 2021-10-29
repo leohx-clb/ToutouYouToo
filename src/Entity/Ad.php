@@ -46,6 +46,11 @@ class Ad
      */
     private $marketer;
 
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    private $isProvide = false;
+
     public function __construct()
     {
         $this->dogs = new ArrayCollection();
@@ -130,6 +135,18 @@ class Ad
     public function setMarketer(?Marketer $marketer): self
     {
         $this->marketer = $marketer;
+
+        return $this;
+    }
+
+    public function getIsProvide(): ?bool
+    {
+        return $this->isProvide;
+    }
+
+    public function setIsProvide(?bool $isProvide): self
+    {
+        $this->isProvide = $isProvide;
 
         return $this;
     }
