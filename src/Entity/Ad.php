@@ -44,12 +44,12 @@ class Ad
      * @ORM\ManyToOne(targetEntity=Marketer::class, inversedBy="ads")
      * @ORM\JoinColumn(nullable=false)
      */
-    private $marketer;
+    private ?Marketer $marketer;
 
     /**
      * @ORM\Column(type="boolean")
      */
-    private $isProvide = false;
+    private bool $isProvide = false;
 
     public function __construct()
     {

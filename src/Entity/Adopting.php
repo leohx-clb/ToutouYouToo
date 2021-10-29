@@ -13,13 +13,6 @@ use Doctrine\ORM\Mapping as ORM;
 class Adopting extends User
 {
     /**
-     * @ORM\Id
-     * @ORM\GeneratedValue
-     * @ORM\Column(type="integer")
-     */
-    private $id;
-
-    /**
      * @ORM\OneToMany(targetEntity=Demand::class, mappedBy="adopting")
      */
     private $demands;
@@ -27,11 +20,6 @@ class Adopting extends User
     public function __construct()
     {
         $this->demands = new ArrayCollection();
-    }
-
-    public function getId(): ?int
-    {
-        return $this->id;
     }
 
     /**
