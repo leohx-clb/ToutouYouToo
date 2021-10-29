@@ -3,7 +3,9 @@
 {% block title %}Ajouter un Toutou{% endblock %}
 
 {% block body %}
-
+<div class="d-flex justify-content-center mt-5">
+    <div  class="col-6">
+        <h2> Ajouter un Chien</h2>
     {{ form_start(form) }}
         {{ form_row(form.history) }}
         {{ form_row(form.lof) }}
@@ -14,11 +16,12 @@
         {{ form_row(form.races) }}
 
 
+
         {% if form.submit is defined %}
             {{ form_row(form.submit) }}
         {% endif %}
 
         <button type="submit" class="btn btn-primary">Valider</button>
     {{ form_end(form) }}
-
+    </div></div>
 {% endblock %}
