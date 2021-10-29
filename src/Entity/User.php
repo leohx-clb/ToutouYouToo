@@ -6,6 +6,7 @@ use App\Repository\UserRepository;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass=UserRepository::class)
@@ -25,22 +26,52 @@ abstract class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     /**
      * @ORM\Column(type="string", length=60)
+     * @Assert\NotBlank(
+     *     message="Le prénom ne doit pas etre vide."
+     * )
+     * @Assert\Length(
+     *     min="3",
+     *     max="50",
+     *     minMessage="Le prénom doit comporter au moins 3 caractéres",
+     *     maxMessage="Le prénom ne doit pas comporter au plus 50 caractéres")
      */
     private $lastName;
 
     /**
      * @ORM\Column(type="string", length=60)
+     * @Assert\NotBlank(
+     *     message="Le nom ne doit pas etre vide."
+     * )
+     * @Assert\Length(
+     *     min="3",
+     *     max="50",
+     *     minMessage="Le nom doit comporter au moins 3 caractéres",
+     *     maxMessage="Le nom ne doit pas comporter au plus 50 caractéres")
      */
     private $firstName;
 
     /**
      * @ORM\Column(type="string", length=180, unique=true)
+     * @Assert\Email(
+     *     message="l'email n'est pas dans bon formate."
+     * )
+     * @Assert\NotBlank(
+     *     message="Le mail ne doit pas etre vide."
+     * )
      */
     private $email;
 
     /**
      * @var string The hashed password
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank(
+     *     message="Le mail ne doit pas etre vide. "
+     * )
+     * @Assert\Length(
+     *     min="4",
+     *     max="50",
+     *     minMessage="Le mot de pass doit comporter au moins 10 caractéres",
+     *     maxMessage="Le mot de pass ne doit pas comporter au plus 50 caractéres")
      */
     private $password;
 
