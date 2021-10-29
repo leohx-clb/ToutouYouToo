@@ -17,15 +17,21 @@ class DogType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('history',TextareaType::class )
-            ->add('lof', CheckboxType::class)
+            ->add('history',TextareaType::class , [
+                'required' => false,
+            ])
+            ->add('lof', CheckboxType::class, [
+                'required' => false,
+            ])
             ->add('description', TextareaType::class)
-            ->add('animalsFriendly', CheckboxType::class )
+            ->add('animalsFriendly', CheckboxType::class , [
+                'required' => false,
+            ])
             ->add('name', TextType::class)
-            ->add('sex', CheckboxType::class)
+            ->add('sex', TextType::class)
             ->add('races', EntityType::class, [
                 'class' => Race::class,
-              //  'choice_label' => 'name',  // commenté car un toString Race
+                //  'choice_label' => 'name',  // commenté car un toString sur Race le remplace
                 'multiple' => true,
                 'expanded' => true
             ])
