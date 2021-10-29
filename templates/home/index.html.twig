@@ -10,7 +10,23 @@
 
 <div class="example-wrapper">
     <h1>Hello {{ controller_name }}! ✅</h1>
-    <h2>ICI HOME POUR PLUS TARD</h2>
+    {% for marketer in marketers %}
+        <div class="card">
+            <div class="card-header">
+                {{ marketer.typeMarketer.name }}
+            </div>
+            <div class="card-body">
+                <blockquote class="blockquote mb-0">
+                    <p>Responsable : {{ marketer.name }}</p>
+                    <footer class="blockquote-footer">nombre d'annonce poster : <cite title="Source Title">{{ marketer.ads.count }}</cite></footer>
+                    <footer class="blockquote-footer">nombre d'annonce valider : <cite title="Source Title">{{ marketer.ads.count }} <span class="bg-danger">mettre en place la fonction</span> </cite></footer>
+{#                pour mettre en place le compte des annonces valider crée un boolean dans ads annonce valider et faire la fonction dans marketer qui check le nb de bool dans ads et le retourner ici#}
+                </blockquote>
+            </div>
+        </div>
+    {% endfor %}
+
+
 
     This friendly message is coming from:
     <ul>
