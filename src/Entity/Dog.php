@@ -6,6 +6,7 @@ use App\Repository\DogRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass=DogRepository::class)
@@ -26,48 +27,53 @@ class Dog
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
+     *
      */
-    private $history;
+    private ?string $history;
 
     /**
      * @ORM\Column(type="boolean")
      */
-    private $lof;
+    private ?bool $lof;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank()
+     * @Assert\Length(min=10)
      */
-    private $description;
+    private ?string $description;
 
     /**
      * @ORM\Column(type="boolean")
      */
-    private $animalsFriendly;
+    private ?bool $animalsFriendly;
 
     /**
      * @ORM\ManyToMany(targetEntity=Race::class, inversedBy="dogs")
      */
-    private $races;
+    private Collection $races;
 
     /**
      * @ORM\ManyToOne(targetEntity=Ad::class, inversedBy="dogs")
      */
-    private $ad;
+    private ?Ad $ad;
 
     /**
      * @ORM\ManyToMany(targetEntity=Demand::class, mappedBy="dogs")
      */
-    private $demands;
+    private Collection $demands;
 
     /**
      * @ORM\Column(type="string", length=50)
+     * @Assert\NotBlank()
+     * @Assert\Length(min=2)
      */
-    private $name;
+    private ?string $name;
 
     /**
-     * @ORM\Column(type="string", length=50)
+     * @ORM\Column(type="string", length=10)
      */
-    private $sex;
+    private ?string $sex;
 
     public function __construct()
     {

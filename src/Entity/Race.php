@@ -6,6 +6,7 @@ use App\Repository\RaceRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass=RaceRepository::class)
@@ -21,6 +22,7 @@ class Race
 
     /**
      * @ORM\Column(type="string", length=50)
+     * @Assert\Length(min=2)
      */
     private $name;
 
@@ -77,4 +79,11 @@ class Race
 
         return $this;
     }
+
+    public function __toString(){
+        return $this->getName();
+    }
+
 }
+
+
