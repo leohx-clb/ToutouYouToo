@@ -23,10 +23,15 @@ class Dog
     /**
      * @ORM\OneToMany(targetEntity=Picture::class, mappedBy="dog", orphanRemoval=true)
      */
-    private $pictures;
+    private Collection $pictures;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
+     * @Assert\Count(
+     *     min = 1,
+     *     max = 5,
+     *     minMessage = "Selectionnez au moins une photo",
+     *     maxMessage = "Vous ne pouvez ajouter qu'au maximum 5 photos"
      *
      */
     private ?string $history;
@@ -38,8 +43,12 @@ class Dog
 
     /**
      * @ORM\Column(type="string", length=255)
-     * @Assert\NotBlank()
-     * @Assert\Length(min=10)
+     * @Assert\NotBlank(message="La description ne peut pas être vide")
+     * @Assert\Length(
+     *     min="20",
+     *     max="255",
+     *     minMessage="La description doit comporter au moins 20 caractéres",
+     *     maxMessage="La description ne doit pas comporter au plus 255 caractéres")
      */
     private ?string $description;
 
@@ -50,6 +59,13 @@ class Dog
 
     /**
      * @ORM\ManyToMany(targetEntity=Race::class, inversedBy="dogs")
+     * @Assert\Count(
+     *     min = 1,
+     *     max = 4,
+     *     minMessage = "Selectionnez au moins une race",
+     *     maxMessage = "You cannot specify more than {{ limit }} emails"
+     *
+     * )
      */
     private Collection $races;
 
@@ -66,12 +82,22 @@ class Dog
     /**
      * @ORM\Column(type="string", length=50)
      * @Assert\NotBlank()
-     * @Assert\Length(min=2)
+     * @Assert\Length(
+     *     min="3",
+     *     max="50",
+     *     minMessage="Le nom doit comporter au moins 3 caractéres",
+     *     maxMessage="Le nom ne doit pas comporter au plus 50 caractéres")
      */
     private ?string $name;
 
     /**
      * @ORM\Column(type="string", length=10)
+     * @Assert\NotBlank(message="Le sexe doit être renseigné male/femelle/inconnu")
+     * @Assert\Length(
+     *     min="4",
+     *     max="8",
+     *     minMessage="Le nom doit comporter au moins 4 caractéres",
+     *     maxMessage="Le nom ne doit pas comporter au plus 50 caractéres")
      */
     private ?string $sex;
 
@@ -267,5 +293,10 @@ class Dog
         $this->isAvailable = $isAvailable;
 
         return $this;
+    }
+  
+    public function __toString()
+    {
+        return $this->getName();
     }
 }

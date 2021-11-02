@@ -20,13 +20,13 @@ class Picture
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $url;
+    private ?string $url;
 
     /**
      * @ORM\ManyToOne(targetEntity=Dog::class, inversedBy="pictures")
      * @ORM\JoinColumn(nullable=false)
      */
-    private $dog;
+    private ?Dog $dog;
 
     public function getId(): ?int
     {

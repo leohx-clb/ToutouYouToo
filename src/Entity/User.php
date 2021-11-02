@@ -53,7 +53,7 @@ abstract class User implements UserInterface, PasswordAuthenticatedUserInterface
     /**
      * @ORM\Column(type="string", length=180, unique=true)
      * @Assert\Email(
-     *     message="l'email n'est pas dans bon formate."
+     *     message="l'email n'est pas dans bon format."
      * )
      * @Assert\NotBlank(
      *     message="Le mail ne doit pas etre vide."
