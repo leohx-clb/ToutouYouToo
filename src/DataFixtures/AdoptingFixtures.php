@@ -63,7 +63,7 @@ class AdoptingFixtures extends Fixture implements DependentFixtureInterface
             $pwd = $this->hasher->hashPassword($ad, $adopting['password']);
             $ad->setpassword($pwd);
 //            permet de mettre le premier adoptant de la list ene admin
-            if (i == 0 ){
+            if ($i == 0 ){
                 $ad->setIsAdministrator(true);
             }
             $ad->setcity($cities[$i]);
