@@ -18,20 +18,21 @@ class Dog
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
      */
-    private $id;
+    private ?int $id;
 
     /**
-     * @ORM\OneToMany(targetEntity=Picture::class, mappedBy="dog", orphanRemoval=true)
+     * @ORM\OneToMany(targetEntity=Picture::class, mappedBy="dog", orphanRemoval=true,cascade={"persist", "remove"})
+     * @Assert\Count(
+     *     min = 1,
+     *     max = 5,
+     *     minMessage = "Selectionnez au moins une photo",
+     *     maxMessage = "Vous ne pouvez ajouter qu'au maximum 5 photos")
      */
     private Collection $pictures;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
-     * @Assert\Count(
-     *     min = 1,
-     *     max = 5,
-     *     minMessage = "Selectionnez au moins une photo",
-     *     maxMessage = "Vous ne pouvez ajouter qu'au maximum 5 photos"
+
      *
      */
     private ?string $history;
