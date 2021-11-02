@@ -64,7 +64,7 @@ class Dog
      *     min = 1,
      *     max = 4,
      *     minMessage = "Selectionnez au moins une race",
-     *     maxMessage = "You cannot specify more than {{ limit }} emails"
+     *     maxMessage = "Selectionnez au maximum 4 races(races des parents)"
      *
      * )
      */
