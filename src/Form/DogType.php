@@ -28,7 +28,7 @@ class DogType extends AbstractType
             ])
             ->add('description', TextareaType::class)
             ->add('animalsFriendly', CheckboxType::class , [
-                'label' => 'Accepte les autres ? ',
+                'label' => 'Accepte les autres animaux ? ',
                 'required' => false,
 
             ])
