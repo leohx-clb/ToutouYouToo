@@ -20,6 +20,7 @@ class CityFixtures extends Fixture implements DependentFixtureInterface
     public function load(ObjectManager $manager): void
     {
         $cities = [
+            ['name'=> 'Nantes', 'zipCode' => '44000'],
             ['name'=> 'Lyon', 'zipCode' => '69000'],
             ['name'=> 'Paris', 'zipCode' => '75000'],
             ['name'=> 'Marseille', 'zipCode' => '13000'],

@@ -101,6 +101,11 @@ class Dog
      */
     private ?string $sex;
 
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    private $isAvailable = true;
+
     public function __construct()
     {
         $this->pictures = new ArrayCollection();
@@ -278,6 +283,18 @@ class Dog
         return $this;
     }
 
+    public function getIsAvailable(): ?bool
+    {
+        return $this->isAvailable;
+    }
+
+    public function setIsAvailable(?bool $isAvailable): self
+    {
+        $this->isAvailable = $isAvailable;
+
+        return $this;
+    }
+  
     public function __toString()
     {
         return $this->getName();

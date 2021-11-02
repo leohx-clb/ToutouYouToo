@@ -44,7 +44,12 @@ class Ad
      * @ORM\ManyToOne(targetEntity=Marketer::class, inversedBy="ads")
      * @ORM\JoinColumn(nullable=false)
      */
-    private $marketer;
+    private ?Marketer $marketer;
+
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    private bool $isProvide = false;
 
     public function __construct()
     {
@@ -130,6 +135,18 @@ class Ad
     public function setMarketer(?Marketer $marketer): self
     {
         $this->marketer = $marketer;
+
+        return $this;
+    }
+
+    public function getIsProvide(): ?bool
+    {
+        return $this->isProvide;
+    }
+
+    public function setIsProvide(?bool $isProvide): self
+    {
+        $this->isProvide = $isProvide;
 
         return $this;
     }
