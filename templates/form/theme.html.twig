@@ -1,0 +1,14 @@
+{% block collection_row %}
+    <div class="list-{{ id }}"
+         data-prototype="{{ form_widget(prototype)|e }}"
+         data-widget-tags="{{ '<li></li>'|e }}"
+         data-widget-counter="{{ form.children|length }}"
+    >
+        {% for child in form.children %}
+            <div>
+                {{ form_widget(child) }}
+            </div>
+        {% endfor %}
+    </div>
+    <button class="add btn btn-outline-success" data-collection-holder-class="list-{{ id }}">Ajouter {{ name }}</button>
+{% endblock %}

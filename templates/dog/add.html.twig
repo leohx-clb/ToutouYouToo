@@ -1,17 +1,25 @@
 {% extends 'base.html.twig' %}
 
+{% form_theme form 'form/theme.html.twig' %}
+
 {% block title %}Ajouter un Toutou{% endblock %}
 
 {% block body %}
-
+<div class="d-flex justify-content-center mt-5">
+    <div  class="col-6">
+        <h2> Ajouter un Chien</h2>
     {{ form_start(form) }}
-        {{ form_row(form.history) }}
-        {{ form_row(form.lof) }}
-        {{ form_row(form.description) }}
-        {{ form_row(form.animalsFriendly) }}
         {{ form_row(form.name) }}
         {{ form_row(form.sex) }}
-        {{ form_row(form.races) }}
+        {{ form_row(form.races)}}
+        <h3>Importez une ou plusieurs Images</h3>
+        <div class="d-flex justify-content-center mt-4">
+            {{ form_row(form.pictures) }}
+        </div>
+        {{ form_row(form.lof) }}
+        {{ form_row(form.description) }}
+        {{ form_row(form.history) }}
+        {{ form_row(form.animalsFriendly) }}
 
 
         {% if form.submit is defined %}
@@ -20,5 +28,32 @@
 
         <button type="submit" class="btn btn-primary">Valider</button>
     {{ form_end(form) }}
+    </div>
+</div>
+{% endblock %}
+
+{% block javascripts %}
+<script>
+    const addFormToCollection = (e) => {
+    e.preventDefault();
+    const collectionHolder = document.querySelector('.' + e.currentTarget.dataset.collectionHolderClass);
+    const item = document.createElement('div');
+
+    item.innerHTML = collectionHolder
+    .dataset
+    .prototype
+    .replace(
+    /__name__/g,
+    collectionHolder.dataset.widgetCounter
+    );
+
+    collectionHolder.appendChild(item);
+    collectionHolder.dataset.widgetCounter++;
+}
+
+    document.querySelectorAll('.add').forEach((element) => {
+    element.addEventListener("click", addFormToCollection);
+})
+</script>
 
 {% endblock %}
