@@ -3,7 +3,6 @@
 namespace App\Form;
 
 use App\Entity\Dog;
-use App\Entity\Picture;
 use App\Entity\Race;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
