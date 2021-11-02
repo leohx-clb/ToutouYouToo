@@ -25,10 +25,7 @@ class DogController extends AbstractController
 
         $form = $this->createForm(DogType::class, $dog);
 
-
         $form->handleRequest($request);
-
-
 
         if ($form->isSubmitted() && $form->isValid()) {
             $em->persist($dog);

@@ -23,10 +23,15 @@ class Dog
     /**
      * @ORM\OneToMany(targetEntity=Picture::class, mappedBy="dog", orphanRemoval=true)
      */
-    private $pictures;
+    private Collection $pictures;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
+     * @Assert\Count(
+     *     min = 1,
+     *     max = 5,
+     *     minMessage = "Selectionnez au moins une photo",
+     *     maxMessage = "Vous ne pouvez ajouter qu'au maximum 5 photos"
      *
      */
     private ?string $history;
@@ -54,6 +59,13 @@ class Dog
 
     /**
      * @ORM\ManyToMany(targetEntity=Race::class, inversedBy="dogs")
+     * @Assert\Count(
+     *     min = 1,
+     *     max = 4,
+     *     minMessage = "Selectionnez au moins une race",
+     *     maxMessage = "You cannot specify more than {{ limit }} emails"
+     *
+     * )
      */
     private Collection $races;
 
