@@ -23,21 +23,34 @@ class AdoptingFixtures extends Fixture implements DependentFixtureInterface
     public function load(ObjectManager $manager): void
     {
         $adoptings = [
-            ['lastName'=> 'Redford',
+            [
+                'lastName'=> 'admin',
+                'firstName' => 'admin',
+                'email' => 'admin.admin@admin.com',
+                'password' => 'admin',
+                'name' => 'admin'
+            ],
+            [
+                'lastName'=> 'admin',
                 'firstName' => 'Robert',
                 'email' => 'robert.redford@gmail.com',
                 'password' => 'toto',
-                'name' => 'Robert Redford'],
-            ['lastName'=> 'Travolta',
+                'name' => 'Robert Redford'
+            ],
+            [
+                'lastName'=> 'Travolta',
                 'firstName' => 'John',
                 'email' => 'john.travolta@gmail.com',
                 'password' => 'toto',
-                'name' => 'John Travolta'],
-            ['lastName'=> 'Gabble',
+                'name' => 'John Travolta'
+            ],
+            [
+                'lastName'=> 'Gabble',
                 'firstName' => 'Clark',
                 'email' => 'clark.gabble@gmail.com',
                 'password' => 'toto',
-                'name' => 'Clark Gabble']
+                'name' => 'Clark Gabble'
+            ]
          ];
         $cities = $this->cityRepository->findAll();
         $i=0;
@@ -49,7 +62,10 @@ class AdoptingFixtures extends Fixture implements DependentFixtureInterface
             //hash le mot de passe
             $pwd = $this->hasher->hashPassword($ad, $adopting['password']);
             $ad->setpassword($pwd);
-            $ad->setIsAdministrator(false);
+//            permet de mettre le premier adoptant de la list ene admin
+            if ($i == 0 ){
+                $ad->setIsAdministrator(true);
+            }
             $ad->setcity($cities[$i]);
             $i++;
             $manager->persist($ad);

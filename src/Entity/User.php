@@ -22,7 +22,7 @@ abstract class User implements UserInterface, PasswordAuthenticatedUserInterface
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
      */
-    private $id;
+    protected ?int $id;
 
     /**
      * @ORM\Column(type="string", length=60)
@@ -35,7 +35,7 @@ abstract class User implements UserInterface, PasswordAuthenticatedUserInterface
      *     minMessage="Le prénom doit comporter au moins 3 caractéres",
      *     maxMessage="Le prénom ne doit pas comporter au plus 50 caractéres")
      */
-    private $lastName;
+    protected ?string $lastName;
 
     /**
      * @ORM\Column(type="string", length=60)
@@ -48,7 +48,7 @@ abstract class User implements UserInterface, PasswordAuthenticatedUserInterface
      *     minMessage="Le nom doit comporter au moins 3 caractéres",
      *     maxMessage="Le nom ne doit pas comporter au plus 50 caractéres")
      */
-    private $firstName;
+    protected ?string $firstName;
 
     /**
      * @ORM\Column(type="string", length=180, unique=true)
@@ -59,7 +59,7 @@ abstract class User implements UserInterface, PasswordAuthenticatedUserInterface
      *     message="Le mail ne doit pas etre vide."
      * )
      */
-    private $email;
+    protected ?string $email;
 
     /**
      * @var string The hashed password
@@ -73,23 +73,28 @@ abstract class User implements UserInterface, PasswordAuthenticatedUserInterface
      *     minMessage="Le mot de pass doit comporter au moins 10 caractéres",
      *     maxMessage="Le mot de pass ne doit pas comporter au plus 50 caractéres")
      */
-    private $password;
+    protected ?string $password;
 
     /**
      * @ORM\ManyToOne(targetEntity=City::class, inversedBy="users")
      * @ORM\JoinColumn(nullable=false)
      */
-    private $city;
+    protected ?City $city;
 
     /**
      * @ORM\Column(type="boolean")
      */
-    private $isAdministrator = false;
+    protected bool $isAdministrator = false;
 
     /**
      * @ORM\Column(type="json")
      */
-    private $roles = [];
+    protected array $roles = [];
+
+    /**
+     * @ORM\Column(type="string", length=10, nullable=true)
+     */
+    protected ?string $phone;
 
     public function getId(): ?int
     {
@@ -214,6 +219,7 @@ abstract class User implements UserInterface, PasswordAuthenticatedUserInterface
      *
      * @see UserInterface
      */
+
     public function getSalt(): ?string
     {
         return null;
@@ -226,5 +232,17 @@ abstract class User implements UserInterface, PasswordAuthenticatedUserInterface
     {
         // If you store any temporary, sensitive data on the user, clear it here
         // $this->plainPassword = null;
+    }
+
+    public function getPhone(): ?string
+    {
+        return $this->phone;
+    }
+
+    public function setPhone(?string $phone): self
+    {
+        $this->phone = $phone;
+
+        return $this;
     }
 }

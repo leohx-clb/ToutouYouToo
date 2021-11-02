@@ -11,6 +11,7 @@ class DepartmentFixtures extends Fixture
     public function load(ObjectManager $manager): void
     {
         $departments = [
+            ['name'=> 'Loire atlantique', 'number' => 44],
             ['name'=> 'Rhône', 'number' => 69],
             ['name'=> 'Paris', 'number' => 75],
             ['name'=> 'Bouches du Rhône', 'number' => 13],

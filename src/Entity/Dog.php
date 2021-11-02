@@ -18,20 +18,21 @@ class Dog
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
      */
-    private $id;
+    private ?int $id;
 
     /**
-     * @ORM\OneToMany(targetEntity=Picture::class, mappedBy="dog", orphanRemoval=true)
+     * @ORM\OneToMany(targetEntity=Picture::class, mappedBy="dog", orphanRemoval=true,cascade={"persist", "remove"})
+     * @Assert\Count(
+     *     min = 1,
+     *     max = 5,
+     *     minMessage = "Selectionnez au moins une photo",
+     *     maxMessage = "Vous ne pouvez ajouter qu'au maximum 5 photos")
      */
     private Collection $pictures;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
-     * @Assert\Count(
-     *     min = 1,
-     *     max = 5,
-     *     minMessage = "Selectionnez au moins une photo",
-     *     maxMessage = "Vous ne pouvez ajouter qu'au maximum 5 photos"
+
      *
      */
     private ?string $history;
@@ -63,7 +64,7 @@ class Dog
      *     min = 1,
      *     max = 4,
      *     minMessage = "Selectionnez au moins une race",
-     *     maxMessage = "You cannot specify more than {{ limit }} emails"
+     *     maxMessage = "Selectionnez au maximum 4 races(races des parents)"
      *
      * )
      */
@@ -100,6 +101,11 @@ class Dog
      *     maxMessage="Le nom ne doit pas comporter au plus 50 caractéres")
      */
     private ?string $sex;
+
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    private $isAvailable = true;
 
     public function __construct()
     {
@@ -278,6 +284,18 @@ class Dog
         return $this;
     }
 
+    public function getIsAvailable(): ?bool
+    {
+        return $this->isAvailable;
+    }
+
+    public function setIsAvailable(?bool $isAvailable): self
+    {
+        $this->isAvailable = $isAvailable;
+
+        return $this;
+    }
+  
     public function __toString()
     {
         return $this->getName();
