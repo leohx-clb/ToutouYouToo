@@ -13,39 +13,45 @@
                 <ul class="navbar-nav justify-content-end">
 
                 {#partie lien pages en Adoptent#}
+                    {% if is_granted('ROLE_ADOPTING') %}
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Adoptant</a>
                         <div class="dropdown-menu">
                             <a class="dropdown-item" href="#">Mon espace (a faire message)</a>
                         </div>
                     </li>
+                    {% endif %}
 
                 {#partie lien pages en Annonceur#}
+                    {% if is_granted('ROLE_MARKETER') %}
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Annonceur</a>
                         <div class="dropdown-menu">
-                            <a class="dropdown-item" href="/dog">Ajouter un chien</a>
-                            <a class="dropdown-item" href="#">Ajouter une annonce</a>
+                            <a class="dropdown-item" href="{{ path('new_dog') }}">Ajouter un chien</a>
+                            <a class="dropdown-item" href="{{ path('ad') }}">Ajouter une annonce</a>
                         </div>
                     </li>
+                    {% endif %}
 
                 {#partie lien pages en Admin#}
+                    {% if is_granted('ROLE_ADMIN') %}
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Admin</a>
                         <div class="dropdown-menu">
-                            <a class="dropdown-item" href="/type/marketer">Ajouter Type Annonceur</a>
-                            <a class="dropdown-item" href="/race">Ajouter Une race de chien</a>
+                            <a class="dropdown-item" href="{{ path('type_marketer') }}">Ajouter Type Annonceur</a>
+                            <a class="dropdown-item" href="{{ path('race') }}">Ajouter Une race de chien</a>
                         </div>
                     </li>
+                    {% endif %}
 
                 {#partie login/logout#}
                     <li class="nav-item">
                         <div class="input-group nav-item">
                             {% if app.user  %}
-                                <a class="btn btn-danger" href="/logout">Déconnexion</a>
+                                <a class="btn btn-danger" href="{{ path('app_logout') }}">Déconnexion</a>
                             {% else %}
-                                <a class="btn btn-success" href="/login">Connexion</a>
-                                <a class="btn btn-info" href="/adopting">S'inscrire</a>
+                                <a class="btn btn-success" href="{{ path('app_login') }}">Connexion</a>
+                                <a class="btn btn-info" href="{{ path('adopting') }}">S'inscrire</a>
                             {% endif %}
                         </div>
                     </li>
