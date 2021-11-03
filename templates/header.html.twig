@@ -15,7 +15,7 @@
                 {#partie lien pages en Adoptent#}
                     {% if is_granted('ROLE_ADOPTING') %}
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Adoptant</a>
+                        <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="{{ path('home') }}" role="button" aria-haspopup="true" aria-expanded="false">Adoptant</a>
                         <div class="dropdown-menu">
                             <a class="dropdown-item" href="#">Mon espace (a faire message)</a>
                         </div>
@@ -25,7 +25,7 @@
                 {#partie lien pages en Annonceur#}
                     {% if is_granted('ROLE_MARKETER') %}
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Annonceur</a>
+                        <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="{{ path('home') }}" role="button" aria-haspopup="true" aria-expanded="false">Annonceur</a>
                         <div class="dropdown-menu">
                             <a class="dropdown-item" href="{{ path('new_dog') }}">Ajouter un chien</a>
                             <a class="dropdown-item" href="{{ path('ad') }}">Ajouter une annonce</a>
@@ -36,7 +36,7 @@
                 {#partie lien pages en Admin#}
                     {% if is_granted('ROLE_ADMIN') %}
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Admin</a>
+                        <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="{{ path('home') }}" role="button" aria-haspopup="true" aria-expanded="false">Admin</a>
                         <div class="dropdown-menu">
                             <a class="dropdown-item" href="{{ path('type_marketer') }}">Ajouter Type Annonceur</a>
                             <a class="dropdown-item" href="{{ path('race') }}">Ajouter Une race de chien</a>
