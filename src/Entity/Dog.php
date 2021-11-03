@@ -89,7 +89,7 @@ class Dog
      *     minMessage="Le nom doit comporter au moins 3 caractéres ",
      *     maxMessage="Le nom ne doit pas comporter au plus 50 caractéres ")
      */
-    private ?string $name;
+    private ?string $name ='';
 
     /**
      * @ORM\Column(type="string", length=8)
