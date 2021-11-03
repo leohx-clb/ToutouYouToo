@@ -14,10 +14,14 @@ class RaceController extends AbstractController
 {
     /**
      * @Route("/race", name="race")
+     * @Route("/race/{id}/edit", name="edit_race")
      */
-    public function index(Request $request, EntityManagerInterface $em): Response
+    public function index(Request $request, EntityManagerInterface $em, ?Race $race=null): Response
     {
-        $race = new Race();
+        if (!$race){
+            $race = new Race();
+        }
+
 
         $form = $this->createForm(RaceType::class, $race,[
             'submit' => true
