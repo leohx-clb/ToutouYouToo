@@ -12,7 +12,7 @@ class HomeController extends AbstractController
     private MarketerRepository $marketerRepository;
 
     /**
-     * @Route("/home", name="home")
+     * @Route("/", name="home")
      */
     public function index(MarketerRepository $marketerRepository): Response
     {

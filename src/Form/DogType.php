@@ -3,7 +3,6 @@
 namespace App\Form;
 
 use App\Entity\Dog;
-use App\Entity\Picture;
 use App\Entity\Race;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
@@ -29,7 +28,7 @@ class DogType extends AbstractType
             ])
             ->add('description', TextareaType::class)
             ->add('animalsFriendly', CheckboxType::class , [
-                'label' => 'Accepte les autres ? ',
+                'label' => 'Accepte les autres animaux ? ',
                 'required' => false,
 
             ])

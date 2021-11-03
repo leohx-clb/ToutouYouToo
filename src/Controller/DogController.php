@@ -14,10 +14,16 @@ class DogController extends AbstractController
 {
     /**
      * @Route("/dog", name="new_dog")
+     * @Route("/dog/{id}/edit", name="edit_dog")
      */
-    public function add(Request $request, EntityManagerInterface $em): Response
+    public function add(Request $request, EntityManagerInterface $em, ?Dog $dog = null): Response
+    // Pour EDITION DOG L17 * @Route("/dog/{id}/edit", name="edit_dog")
+    // Pour EDITION DOG L19 ?Dog $dog = null pour check que l'objet peut être modifié
+    // Pour EDITION DOG L 24 if (!$dog) {}
     {
-        $dog =new Dog();
+        if (!$dog) {
+            $dog = new Dog();
+        }
         // On crée le formulaire (objet de traitement)
         // Premier paramètre : le formulaire type (FQCN)
         // Deuxième paramètre : l'objet à manipuler (à synchroniser avec le formulaire)
@@ -38,6 +44,10 @@ class DogController extends AbstractController
 
         return $this->render('dog/add.html.twig', [
             'form' => $form->createView(),
+            'dog' => $dog,
+
         ]);
     }
+
+
 }

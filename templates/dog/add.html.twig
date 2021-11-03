@@ -2,13 +2,17 @@
 
 {% form_theme form 'form/theme.html.twig' %}
 
-{% block title %}Ajouter un Toutou{% endblock %}
+{% block title %}Ajouter ou Modifier un Chien{% endblock %}
 
 {% block body %}
+
 <div class="d-flex justify-content-center mt-5">
     <div  class="col-6">
-        <h2> Ajouter un Chien</h2>
-    {{ form_start(form) }}
+
+        <h2>{{ dog.id ? 'Modifier les informations de' : 'Ajouter' }} {{ dog.name }}</h2>
+        <h3>{{ dog.isAvailable ? 'DISPONIBLE' : '' }}</h3>
+
+        {{ form_start(form) }}
         {{ form_row(form.name) }}
         {{ form_row(form.sex) }}
         {{ form_row(form.races)}}

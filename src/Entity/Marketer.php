@@ -15,18 +15,18 @@ class Marketer extends User
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $name;
+    private ?string $name;
 
     /**
      * @ORM\ManyToOne(targetEntity=TypeMarketer::class)
      * @ORM\JoinColumn(nullable=false)
      */
-    private $typeMarketer;
+    private ?TypeMarketer $typeMarketer;
 
     /**
      * @ORM\OneToMany(targetEntity=Ad::class, mappedBy="marketer")
      */
-    private $ads;
+    private Collection $ads;
 
     public function __construct()
     {
