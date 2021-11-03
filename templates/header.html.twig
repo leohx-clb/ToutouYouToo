@@ -1,0 +1,57 @@
+{% block bodyHeader %}
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <div class="container-fluid">
+            {#partie logo#}
+            <a class="navbar-brand" href="/">
+                <img src="https://cdn-icons.flaticon.com/png/512/2954/premium/2954455.png?token=exp=1635936592~hmac=aecd8a83669343b4a2e8ac1c9278fc75" alt="icon dog" width="30" height="30" class="d-inline-block align-text-top">
+                Toutou You Too
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav justify-content-end">
+
+                {#partie lien pages en Adoptent#}
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Adoptant</a>
+                        <div class="dropdown-menu">
+                            <a class="dropdown-item" href="#">Mon espace (a faire message)</a>
+                        </div>
+                    </li>
+
+                {#partie lien pages en Annonceur#}
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Annonceur</a>
+                        <div class="dropdown-menu">
+                            <a class="dropdown-item" href="/dog">Ajouter un chien</a>
+                            <a class="dropdown-item" href="#">Ajouter une annonce</a>
+                        </div>
+                    </li>
+
+                {#partie lien pages en Admin#}
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Admin</a>
+                        <div class="dropdown-menu">
+                            <a class="dropdown-item" href="/type/marketer">Ajouter Type Annonceur</a>
+                            <a class="dropdown-item" href="/race">Ajouter Une race de chien</a>
+                        </div>
+                    </li>
+
+                {#partie login/logout#}
+                    <li class="nav-item">
+                        <div class="input-group nav-item">
+                            {% if app.user  %}
+                                <a class="btn btn-danger" href="/logout">Déconnexion</a>
+                            {% else %}
+                                <a class="btn btn-success" href="/login">Connexion</a>
+                                <a class="btn btn-info" href="/adopting">S'inscrire</a>
+                            {% endif %}
+                        </div>
+                    </li>
+
+                </ul>
+            </div>
+        </div>
+    </nav>
+{% endblock %}
