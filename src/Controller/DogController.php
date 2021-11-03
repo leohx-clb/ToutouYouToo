@@ -22,7 +22,7 @@ class DogController extends AbstractController
     // Pour EDITION DOG L 24 if (!$dog) {}
     {
         if (!$dog) {
-            $dog =new Dog();
+            $dog = new Dog();
         }
         // On crée le formulaire (objet de traitement)
         // Premier paramètre : le formulaire type (FQCN)
@@ -44,6 +44,10 @@ class DogController extends AbstractController
 
         return $this->render('dog/add.html.twig', [
             'form' => $form->createView(),
+            'dog' => $dog,
+
         ]);
     }
+
+
 }

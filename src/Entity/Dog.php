@@ -18,7 +18,7 @@ class Dog
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
      */
-    private ?int $id;
+    private ?int $id = null;
 
     /**
      * @ORM\OneToMany(targetEntity=Picture::class, mappedBy="dog", orphanRemoval=true,cascade={"persist", "remove"})
@@ -26,7 +26,7 @@ class Dog
      *     min = 1,
      *     max = 5,
      *     minMessage = "Selectionnez au moins une photo",
-     *     maxMessage = "Vous ne pouvez ajouter qu'au maximum 5 photos")
+     *     maxMessage = "ajouter au maximum 5 photos")
      */
     private Collection $pictures;
 
@@ -46,9 +46,9 @@ class Dog
      * @ORM\Column(type="string", length=255)
      * @Assert\NotBlank(message="La description ne peut pas être vide")
      * @Assert\Length(
-     *     min="20",
+     *     min="5",
      *     max="255",
-     *     minMessage="La description doit comporter au moins 20 caractéres",
+     *     minMessage="La description doit comporter au moins 5 caractéres",
      *     maxMessage="La description ne doit pas comporter au plus 255 caractéres")
      */
     private ?string $description;
@@ -64,7 +64,7 @@ class Dog
      *     min = 1,
      *     max = 4,
      *     minMessage = "Selectionnez au moins une race",
-     *     maxMessage = "Selectionnez au maximum 4 races(races des parents)"
+     *     maxMessage = "Selectionnez au maximum 4 races de chien(races des parents)"
      *
      * )
      */
@@ -86,26 +86,26 @@ class Dog
      * @Assert\Length(
      *     min="3",
      *     max="50",
-     *     minMessage="Le nom doit comporter au moins 3 caractéres",
-     *     maxMessage="Le nom ne doit pas comporter au plus 50 caractéres")
+     *     minMessage="Le nom doit comporter au moins 3 caractéres ",
+     *     maxMessage="Le nom ne doit pas comporter au plus 50 caractéres ")
      */
     private ?string $name;
 
     /**
-     * @ORM\Column(type="string", length=10)
-     * @Assert\NotBlank(message="Le sexe doit être renseigné male/femelle/inconnu")
+     * @ORM\Column(type="string", length=8)
+     * @Assert\NotBlank(message="Le sexe doit être renseigné : male/femelle/inconnu ")
      * @Assert\Length(
      *     min="4",
      *     max="8",
-     *     minMessage="Le nom doit comporter au moins 4 caractéres",
-     *     maxMessage="Le nom ne doit pas comporter au plus 50 caractéres")
+     *     minMessage="Le nom doit comporter au moins 4 caractéres ",
+     *     maxMessage="Le nom ne doit pas comporter au plus 8 caractéres ")
      */
     private ?string $sex;
 
     /**
      * @ORM\Column(type="boolean")
      */
-    private $isAvailable = true;
+    private bool $isAvailable = true;
 
     public function __construct()
     {
