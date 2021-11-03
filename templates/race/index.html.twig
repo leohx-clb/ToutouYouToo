@@ -1,5 +1,6 @@
 {% extends 'base.html.twig' %}
 {% block body %}
+    <h2 class="d-flex justify-content-center mt-5">{{ race.id ? 'Edition' : 'Ajouter' }} une Race</h2>
     <div class="d-flex justify-content-center mt-5">
         <div  class="col-6">
             {{ form_start(form, {'attr':{'novalidate':'novalidate'}}) }}
