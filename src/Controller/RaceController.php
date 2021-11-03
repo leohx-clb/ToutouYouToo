@@ -35,6 +35,7 @@ class RaceController extends AbstractController
         }
         return $this->render('race/index.html.twig', [
             'form' => $form->createView(),
+            'race' => $race
         ]);
     }
 }
