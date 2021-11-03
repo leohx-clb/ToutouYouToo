@@ -9,10 +9,10 @@
 <div class="d-flex justify-content-center mt-5">
     <div  class="col-6">
 
-        <h2>{{ dog.id ? 'Modifier les informations de' : 'Ajouter' }} {{ dog.name }}</h2>
-        <h3>{{ dog.isAvailable ? 'DISPONIBLE' : '' }}</h3>
+        <h1 class="text-primary">{{ dog.id ? 'Modifier les informations de' : 'Ajouter' }} {{ dog.name }} </h1>
+        <h5 class="text-success">{{ dog.id ? 'DISPO' : '' }}</h5>
 
-        {{ form_start(form) }}
+        {{ form_start(form, {'attr':{'novalidate':'novalidate'}}) }}
         {{ form_row(form.name) }}
         {{ form_row(form.sex) }}
         {{ form_row(form.races)}}

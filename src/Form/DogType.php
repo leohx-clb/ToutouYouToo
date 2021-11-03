@@ -43,7 +43,8 @@ class DogType extends AbstractType
                 'class' => Race::class,
                 //  'choice_label' => 'name',  // commenté car un toString sur Race le remplace
                 'multiple' => true,
-                'expanded' => true
+                'expanded' => true,
+                'by_reference' => false,
             ])
             ->add('pictures',CollectionType::class,[
                 'entry_type' => PictureType::class,
