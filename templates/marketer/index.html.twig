@@ -1,0 +1,23 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Ajout d'un annonceur{% endblock %}
+
+{% block body %}
+<h1 class="text-center">Ajout d'un annonceur</h1>
+    <div class="d-flex justify-content-center mt-5">
+        <div  class="col-6">
+            {{ form_start(form) }}
+            {{ form_row(form.lastName) }}
+            {{ form_row(form.firstName) }}
+            {{ form_row(form.email) }}
+            {{ form_row(form.password) }}
+            {{ form_row(form.name) }}
+            {{ form_row(form.city) }}
+            {{ form_row(form.typeMarketer) }}
+            {# On ajoute un bouton de validation du formulaire, nous n'en avons pas mis dans notre objet TagType #}
+            <button type="submit" class="btn btn-primary">Valider</button>
+            {# On affiche la balise </form> et les éventuels champs qui n'aurait pas été affichés jusqu'ici #}
+            {{ form_end(form) }}
+        </div>
+    </div>
+{% endblock %}
