@@ -28,6 +28,11 @@ class Picture
      */
     private ?Dog $dog;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=Ad::class, inversedBy="pictures")
+     */
+    private $ad;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -53,6 +58,18 @@ class Picture
     public function setDog(?Dog $dog): self
     {
         $this->dog = $dog;
+
+        return $this;
+    }
+
+    public function getAd(): ?Ad
+    {
+        return $this->ad;
+    }
+
+    public function setAd(?Ad $ad): self
+    {
+        $this->ad = $ad;
 
         return $this;
     }

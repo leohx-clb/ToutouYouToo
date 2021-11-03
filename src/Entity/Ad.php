@@ -35,7 +35,7 @@ class Ad
     private $description;
 
     /**
-     * @ORM\OneToMany(targetEntity=Dog::class, mappedBy="ad")
+     * @ORM\OneToMany(targetEntity=Dog::class, mappedBy="ad", cascade={"persist"})
      * @ORM\JoinColumn(nullable=false)
      */
     private $dogs;
@@ -51,9 +51,15 @@ class Ad
      */
     private bool $isProvide = false;
 
+    /**
+     * @ORM\OneToMany(targetEntity=Picture::class, mappedBy="ad")
+     */
+    private $pictures;
+
     public function __construct()
     {
         $this->dogs = new ArrayCollection();
+        $this->pictures = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -147,6 +153,36 @@ class Ad
     public function setIsProvide(?bool $isProvide): self
     {
         $this->isProvide = $isProvide;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Picture[]
+     */
+    public function getPictures(): Collection
+    {
+        return $this->pictures;
+    }
+
+    public function addPicture(Picture $picture): self
+    {
+        if (!$this->pictures->contains($picture)) {
+            $this->pictures[] = $picture;
+            $picture->setAd($this);
+        }
+
+        return $this;
+    }
+
+    public function removePicture(Picture $picture): self
+    {
+        if ($this->pictures->removeElement($picture)) {
+            // set the owning side to null (unless already changed)
+            if ($picture->getAd() === $this) {
+                $picture->setAd(null);
+            }
+        }
 
         return $this;
     }

@@ -1,0 +1,20 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Ajout d'une annonce{% endblock %}
+
+{% block body %}
+    <h1 class="text-center">Ajout d'une annonce</h1>
+    <div class="d-flex justify-content-center mt-5">
+        <div  class="col-6">
+            {{ form_start(form) }}
+            {{ form_row(form.title) }}
+            {{ form_row(form.description) }}
+            {{ form_row(form.dogs) }}
+
+            {# On ajoute un bouton de validation du formulaire, nous n'en avons pas mis dans notre objet TagType #}
+            <button type="submit" class="btn btn-primary">Valider</button>
+            {# On affiche la balise </form> et les éventuels champs qui n'aurait pas été affichés jusqu'ici #}
+            {{ form_end(form) }}
+        </div>
+    </div>
+{% endblock %}
