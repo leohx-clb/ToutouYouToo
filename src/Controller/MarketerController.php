@@ -34,7 +34,7 @@ class MarketerController extends AbstractController
             $em->persist($mk);
             $em->flush();
 
-            return $this->redirectToRoute('/home');
+            return $this->redirectToRoute('home');
         }
 
         return $this->render('marketer/index.html.twig', [

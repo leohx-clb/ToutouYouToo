@@ -41,7 +41,7 @@ class AdController extends AbstractController
             $em->persist($ad);
             $em->flush();
 
-            return $this->redirectToRoute('/home');
+            return $this->redirectToRoute('home');
         }
 
         return $this->render('ad/index.html.twig', [
