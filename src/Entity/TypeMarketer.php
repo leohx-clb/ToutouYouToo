@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use App\Repository\TypeMarketerRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass=TypeMarketerRepository::class)
@@ -19,6 +20,11 @@ class TypeMarketer
 
     /**
      * @ORM\Column(type="string", length=50)
+     *@Assert\Length(
+     *     min="3",
+     *     max="50",
+     *     minMessage="Le nom doit comporter au moins 3 caractéres ",
+     *     maxMessage="Le nom ne doit pas comporter au plus 50 caractéres ")
      */
     private $name;
 
