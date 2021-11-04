@@ -5,6 +5,8 @@ namespace App\Form;
 use App\Entity\Marketer;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\EmailType;
+use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -22,11 +24,11 @@ class MarketerType extends AbstractType
                 'required' => true,
                 'label' => 'Prénom',
             ])
-            ->add('email',TextType::class,[
+            ->add('email',EmailType::class,[
                 'required' => true,
                 'label' => 'Email',
             ])
-            ->add('password',TextType::class,[
+            ->add('password',PasswordType::class,[
                 'required' => true,
                 'label' => 'Mot de passe',
             ])
