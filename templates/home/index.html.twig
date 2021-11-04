@@ -26,6 +26,29 @@
         </div>
     {% endfor %}
 
+    {% for dog in dogs %}
+        <div class="card mb-3">
+            <h3 class="card-header">{{ dog.name }}</h3>
+            <div class="card-body">
+                <h5 class="card-title"></h5>
+                <h6 class="card-subtitle text-success">{{ dog.isAvailable ? 'Disponible à l\'adoption' : ''}}</h6>
+                {% for picture in pictures %}
+                <img src="{{ picture.url }}" width="100" height="100" >
+                {% endfor %}
+            </div>
+
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item">sexe : {{ dog.sex }}</li>
+                <li class="list-group-item">Accepte les autres animaux : {{ dog.animalsFriendly ? 'Oui' : 'Non' }}</li>
+                <li class="list-group-item">L.O.F : {{ dog.lof ? 'Oui' : 'Non'}}</li>
+            </ul>
+            <div class="card-body">
+                <a href="#" class="card-link">Details</a>
+            </div>
+
+        </div>
+
+    {% endfor %}
 
 
     This friendly message is coming from:
