@@ -62,6 +62,18 @@ class Ad
         $this->pictures = new ArrayCollection();
     }
 
+    public function getPicturesAllDogs(): array
+    {
+        $pictures = [];
+        $dogs = $this->getDogs();
+        foreach ($dogs as $dog) {
+            foreach ($dog->getPictures() as $picture) {
+                $pictures->add($picture->getUrl());
+            }
+        }
+        return $pictures;
+    }
+
     public function getId(): ?int
     {
         return $this->id;
