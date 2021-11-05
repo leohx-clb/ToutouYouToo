@@ -39,7 +39,7 @@
                 <h5 class="card-title">{{ ad.title }}</h5>
                 <h6 class="card-title">Eleveur : {{ ad.marketer.name }}</h6>
                 <p class="card-text">{{ ad.description }}</p>
-                <a href="#" class="btn btn-primary">Détail</a>
+                <a href="{{ path('ad_show', {'id': ad.id}) }}" class="btn btn-primary">Détail</a>
             </div>
         </div>
     {% endfor %}
