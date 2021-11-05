@@ -3,10 +3,10 @@
 namespace App\Controller;
 
 use App\Entity\Ad;
-use App\Entity\Dog;
 use App\Entity\Marketer;
 use App\Form\AdType;
-use Cassandra\Date;
+use App\Repository\AdRepository;
+use App\Repository\PictureRepository;
 use DateTime;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -46,6 +46,19 @@ class AdController extends AbstractController
 
         return $this->render('ad/index.html.twig', [
             'form' => $form->createView(),
+        ]);
+    }
+
+    /**
+     * @Route("/ad/show/{id}", name="ad_show", requirements={"id"="\d+"})
+     *
+     */
+    public function details(AdRepository $adRepository , int $id):Response{
+        $ad = $adRepository->find($id);
+        $dogs = $ad->getDogs();
+        return $this->render('ad/detail.hmtl.twig',[
+            'ad' => $ad,
+            'dogs' => $dogs
         ]);
     }
 }
