@@ -1,0 +1,48 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Liste des annonces{% endblock %}
+
+{% block body %}
+<h1 class="text-center">Liste des annonces</h1>
+<div class="d-flex justify-content-center mt-5">
+    <div  class="col-8 row">
+    {% for ad in ads %}
+        <div class="card col-4" style="">
+            <div class="card-body">
+                <div id="carouselExampleSlidesOnly" class="carousel slide" data-bs-ride="carousel">
+                    <div class="carousel-inner">
+                        {% set i = 0 %}
+                        {% for dog in ad.dogs %}
+                            {% for picture in dog.pictures %}
+                                {% if i is same as(0) %}
+                                    <div class="carousel-item active">
+                                        <img style="height: 220px;
+                                                    width: 100%;
+                                                    object-fit: cover;
+                                                    object-position: center;"
+                                            src="{{ picture.url }}" class="d-block w-100" alt="...">
+                                    </div>
+                                {% else %}
+                                    <div class="carousel-item">
+                                        <img style="height: 220px;
+                                                    width: 100%;
+                                                    object-fit: cover;
+                                                    object-position: center;"
+                                             src="{{ picture.url }}" class="d-block w-100" alt="...">
+                                    </div>
+                                {% endif %}
+                                {% set i = i + 1 %}
+                            {% endfor %}
+                        {% endfor %}
+                    </div>
+                </div>
+                <h5 class="card-title">{{ ad.title }}</h5>
+                <h6 class="card-title">Eleveur : {{ ad.marketer.name }}</h6>
+                <p class="card-text">{{ ad.description }}</p>
+                <a href="#" class="btn btn-primary">Détail</a>
+            </div>
+        </div>
+    {% endfor %}
+    </div>
+</div>
+{% endblock %}
