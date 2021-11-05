@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Repository\AdRepository;
 use App\Repository\DogRepository;
 use App\Repository\MarketerRepository;
 use App\Repository\PictureRepository;
@@ -12,30 +13,26 @@ use Symfony\Component\Routing\Annotation\Route;
 class HomeController extends AbstractController
 {
     private MarketerRepository $marketerRepository;
-    private DogRepository $dogRepository;
-    private PictureRepository $pictureRepository;
+    private AdRepository  $adRepository;
 
     /**
      * @Route("/", name="home")
      * @param MarketerRepository $marketerRepository
-     * @param DogRepository $dogRepository
-     * @param PictureRepository $pictureRepository
+     * @param AdRepository  $adRepository
      * @return Response
      */
-    public function index(MarketerRepository $marketerRepository, DogRepository $dogRepository, PictureRepository $pictureRepository): Response
+    public function index(AdRepository $adRepository,MarketerRepository $marketerRepository): Response
     {
         $this->marketerRepository = $marketerRepository;
         $marketers = $marketerRepository->findAll();
-        $this->dogRepository = $dogRepository;
-        $dogs = $dogRepository->findAll();
-        $this->pictureRepository = $pictureRepository;
-        $pictures = $pictureRepository->findAll();
+        $this->adRepository = $adRepository;
+//        $adsDesc = $adRepository->findBy(['dateUpdate' => 'ASC']);
+        $adsDesc = $adRepository->findLast();
 
         return $this->render('home/index.html.twig', [
             'controller_name' => 'HomeController',
             'marketers' => $marketers,
-            'dogs' => $dogs,
-            'pictures' => $pictures
+            'adsDesc' => $adsDesc
 
         ]);
     }

@@ -8,8 +8,55 @@
     .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
 </style>
 
+<div class="container my-5">
+{#    part ads    #}
+    <div class="row row-cols-1 row-cols-md-3 g-4">
+
+        {% for ad in adsDesc %}
+            <div class="col">
+                <div class="card">
+                    <div class="card-body">
+                        <div id="carouselExampleSlidesOnly" class="carousel slide" data-bs-ride="carousel">
+                            <div class="carousel-inner">
+                                {% set i = 0 %}
+                                {% for dog in ad.dogs %}
+                                    {% for picture in dog.pictures %}
+                                        {% if i is same as(0) %}
+                                            <div class="carousel-item active">
+                                                <img style="height: 220px;
+                                                            width: 100%;
+                                                            object-fit: cover;
+                                                            object-position: center;"
+                                                     src="{{ picture.url }}" class="d-block w-100" alt="...">
+                                            </div>
+                                        {% else %}
+                                            <div class="carousel-item">
+                                                <img style="height: 220px;
+                                                            width: 100%;
+                                                            object-fit: cover;
+                                                            object-position: center;"
+                                                     src="{{ picture.url }}" class="d-block w-100" alt="...">
+                                            </div>
+                                        {% endif %}
+                                        {% set i = i + 1 %}
+                                    {% endfor %}
+                                {% endfor %}
+                            </div>
+                        </div>
+                        <h5 class="card-title">{{ ad.title }}</h5>
+                        <h6 class="card-title">Eleveur : {{ ad.marketer.name }}</h6>
+                        <p class="card-text">{{ ad.description }}</p>
+                        <a href="{{ path('ad_show', {'id': ad.id}) }}" class="btn btn-primary">Détail</a>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+
+
+    </div>
+</div>
+{#    part marketers    #}
 <div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
     {% for marketer in marketers %}
         <div class="card">
             <div class="card-header">
@@ -19,23 +66,12 @@
                 <blockquote class="blockquote mb-0">
                     <p>Responsable : {{ marketer.name }}</p>
                     <footer class="blockquote-footer">nombre d'annonce poster : <cite title="Source Title">{{ marketer.ads.count }}</cite></footer>
-                    <footer class="blockquote-footer">nombre d'annonce valider : <cite title="Source Title">{{ marketer.ads.count }} <span class="bg-danger">mettre en place la fonction</span> </cite></footer>
-{#                pour mettre en place le compte des annonces valider crée un boolean dans ads annonce valider et faire la fonction dans marketer qui check le nb de bool dans ads et le retourner ici#}
+                    <footer class="blockquote-footer">nombre d'annonce valider : <cite title="Source Title">{{ marketer.countAdsProvide }}</cite></footer>
                 </blockquote>
             </div>
         </div>
     {% endfor %}
 
-
-
-
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code><a href="{{ 'C:/wamp64/www/toutouYouToo/src/Controller/HomeController.php'|file_link(0) }}">src/Controller/HomeController.php</a></code></li>
-        <li>Your template at <code><a href="{{ 'C:/wamp64/www/toutouYouToo/templates/home/index.html.twig'|file_link(0) }}">templates/home/index.html.twig</a></code></li>
-    </ul>
 </div>
-
-    </div>
 
 {% endblock %}
