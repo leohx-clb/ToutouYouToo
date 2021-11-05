@@ -7,6 +7,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
+use Gedmo\Mapping\Annotation as Gedmo;
 
 /**
  * @ORM\Entity(repositoryClass=DogRepository::class)
@@ -66,9 +67,7 @@ class Dog
      *     min = 1,
      *     max = 4,
      *     minMessage = "Selectionnez au moins une race",
-     *     maxMessage = "Selectionnez au maximum 4 races de chien(races des parents)"
-     *
-     * )
+     *     maxMessage = "Selectionnez au maximum 4 races de chien(races des parents)")
      */
     private Collection $races;
 
@@ -94,13 +93,20 @@ class Dog
     private ?string $name ='';
 
     /**
+     * @Gedmo\Slug(fields={"name"})
+     * @ORM\Column(type="string", length=100)
+     */
+    private ?string $slug;
+
+
+    /**
      * @ORM\Column(type="string", length=8)
      * @Assert\NotBlank(message="Le sexe doit être renseigné : male/femelle/inconnu ")
      * @Assert\Length(
      *     min="4",
      *     max="8",
-     *     minMessage="Le nom doit comporter au moins 4 caractéres ",
-     *     maxMessage="Le nom ne doit pas comporter au plus 8 caractéres ")
+     *     minMessage="Le mot doit comporter au moins 4 caractéres ",
+     *     maxMessage="Le mot doit comporter au plus 8 caractéres ")
      */
     private ?string $sex;
 
@@ -119,6 +125,14 @@ class Dog
     public function getId(): ?int
     {
         return $this->id;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getSlug(): ?string
+    {
+        return $this->slug;
     }
 
     /**
