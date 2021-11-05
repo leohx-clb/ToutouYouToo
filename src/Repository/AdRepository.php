@@ -47,4 +47,19 @@ class AdRepository extends ServiceEntityRepository
         ;
     }
     */
+    public function findLast()
+    {
+        return $this->createQueryBuilder('a')
+            ->distinct()
+            ->innerJoin("a.dogs", "d")
+            ->innerJoin("d.pictures", "p")
+            ->innerJoin("d.races", "r")
+            ->innerJoin("a.marketer", "an")
+            ->andWhere("a.isProvide = :isProvide")
+            ->setParameter('isProvide', false)
+            ->orderBy("a.dateUpdate", "DESC")
+            ->setMaxResults(5)
+            ->getQuery()
+            ->getResult();
+    }
 }

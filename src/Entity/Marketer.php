@@ -57,10 +57,16 @@ class Marketer extends User
         return $this;
     }
 
-    public function countAdsValided (){
-        // METHODE A METTRE EN PLACE TICKET 64
-        //methode pour count le nombre d'annonce valider
-        //ajouter le boolean dans ad pour conter le nombre valider
+    public function countAdsProvide (): int
+    {
+        $i = 0;
+        $ads = $this->getAds();
+        foreach ($ads as $ad){
+            if ($ad->getIsProvide()){
+                $i++;
+            }
+        }
+        return $i;
     }
 
     /**
