@@ -5,7 +5,6 @@ namespace App\Controller;
 use App\Entity\Adopting;
 use App\Form\AdoptingType;
 use Doctrine\ORM\EntityManagerInterface;
-use phpDocumentor\Reflection\Types\True_;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -21,7 +20,7 @@ class AdoptingController extends AbstractController
     {
         $adopting = new Adopting();
         $form = $this->createForm(AdoptingType::class, $adopting, [
-            'submit' => true
+            'submit' => true,
         ]);
 
         $form->handleRequest($request);
@@ -33,7 +32,6 @@ class AdoptingController extends AbstractController
 
             return $this->redirectToRoute('app_login');
         }
-
 
         return $this->render('adopting/index.html.twig', [
             'form' => $form->createView(),

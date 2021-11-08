@@ -96,22 +96,13 @@ abstract class User implements UserInterface, PasswordAuthenticatedUserInterface
      */
     protected ?string $phone;
 
-    /**
-     * @var string|null
-     */
     private ?string $plainPassword;
 
-    /**
-     * @return string|null
-     */
     public function getPlainPassword(): ?string
     {
         return $this->plainPassword;
     }
 
-    /**
-     * @param string|null $plainPassword
-     */
     public function setPlainPassword(?string $plainPassword): void
     {
         $this->plainPassword = $plainPassword;
@@ -240,7 +231,6 @@ abstract class User implements UserInterface, PasswordAuthenticatedUserInterface
      *
      * @see UserInterface
      */
-
     public function getSalt(): ?string
     {
         return null;

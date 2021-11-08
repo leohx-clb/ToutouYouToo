@@ -17,35 +17,35 @@ class MarketerFixtures extends Fixture implements DependentFixtureInterface
 
     public function __construct(CityRepository $cityRepository, TypeMarketerRepository $typeMarketerRepository, UserPasswordHasherInterface $hasher)
     {
-       $this->cityRepository = $cityRepository;
-       $this->typeMarketerRepository = $typeMarketerRepository;
-       $this->hasher = $hasher;
+        $this->cityRepository = $cityRepository;
+        $this->typeMarketerRepository = $typeMarketerRepository;
+        $this->hasher = $hasher;
     }
 
     public function load(ObjectManager $manager): void
     {
         $marketers = [
-            ['lastName'=> 'Cobain',
+            ['lastName' => 'Cobain',
                 'firstName' => 'Kurt',
                 'email' => 'kurt.cobain@gmail.com',
                 'password' => 'toto',
-                'name' => 'Kurt Cobain'],
-            ['lastName'=> 'Bowie',
+                'name' => 'Kurt Cobain', ],
+            ['lastName' => 'Bowie',
                 'firstName' => 'David',
                 'email' => 'david.bowie@gmail.com',
                 'password' => 'toto',
-                'name' => 'David Bowie'],
-            ['lastName'=> 'Jagger',
+                'name' => 'David Bowie', ],
+            ['lastName' => 'Jagger',
                 'firstName' => 'Mick',
                 'email' => 'mick.jagger@gmail.com',
                 'password' => 'toto',
-                'name' => 'Mick Jagger']
+                'name' => 'Mick Jagger', ],
          ];
         $cities = $this->cityRepository->findAll();
         $typeMarketers = $this->typeMarketerRepository->findAll();
-        $i=0;
-        foreach ($marketers as $marketer){
-        $mk = new Marketer();
+        $i = 0;
+        foreach ($marketers as $marketer) {
+            $mk = new Marketer();
             $mk->setFirstName($marketer['firstName']);
             $mk->setlastName($marketer['lastName']);
             $mk->setEmail($marketer['email']);
@@ -55,11 +55,12 @@ class MarketerFixtures extends Fixture implements DependentFixtureInterface
             $mk->setIsAdministrator(false);
             $mk->setcity($cities[$i]);
             $mk->setName($marketer['name']);
-            if ($i<=1)
+            if ($i <= 1) {
                 $mk->setTypeMarketer($typeMarketers[0]);
-            else
+            } else {
                 $mk->setTypeMarketer($typeMarketers[1]);
-            $i++;
+            }
+            ++$i;
             $manager->persist($mk);
         }
         // $product = new Product();
@@ -73,7 +74,7 @@ class MarketerFixtures extends Fixture implements DependentFixtureInterface
         // TODO: Implement getDependencies() method.
         return [
             CityFixtures::class,
-            TypeMarketerFixtures::class
+            TypeMarketerFixtures::class,
         ];
     }
 }

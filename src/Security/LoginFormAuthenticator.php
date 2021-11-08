@@ -52,7 +52,6 @@ class LoginFormAuthenticator extends AbstractLoginFormAuthenticator
 
         // For example: Ici on definie la route de redirection du login ROUTE-A-MODIFIER
         return new RedirectResponse($this->urlGenerator->generate('home'));
-
     }
 
     protected function getLoginUrl(Request $request): string

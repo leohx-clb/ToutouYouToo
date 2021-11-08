@@ -20,7 +20,6 @@ class DogController extends AbstractController
     /**
      * @Route("/dog", name="new_dog")
      * @Route("/dog/{id}/edit", name="edit_dog")
-     *
      */
     public function add(Request $request, EntityManagerInterface $em, ?Dog $dog = null): Response
     // Pour EDITION DOG L17 * @Route("/dog/{id}/edit", name="edit_dog")
@@ -51,23 +50,22 @@ class DogController extends AbstractController
         return $this->render('dog/add.html.twig', [
             'form' => $form->createView(),
             'dog' => $dog,
-
         ]);
     }
+
     /**
      * @Route("/dog/list", name="list_dogs")
      */
-    public function list(DogRepository $dogRepository , PictureRepository $pictureRepository):Response{
+    public function list(DogRepository $dogRepository, PictureRepository $pictureRepository): Response
+    {
         $this->dogRepository = $dogRepository;
         $dogs = $dogRepository->findAll();
         $this->pictureRepository = $pictureRepository;
         $pictures = $pictureRepository->findAll();
-        return $this->render('dog/list.html.twig',[
 
+        return $this->render('dog/list.html.twig', [
             'picture' => $pictures,
-            'dogs' => $dogs
+            'dogs' => $dogs,
         ]);
     }
-
-
 }

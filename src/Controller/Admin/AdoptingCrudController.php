@@ -17,19 +17,17 @@ class AdoptingCrudController extends AbstractCrudController
         return Adopting::class;
     }
 
-
     public function configureFields(string $pageName): iterable
     {
         return [
-            IdField::new('id')->hideOnForm() ,
+            IdField::new('id')->hideOnForm(),
             TextField::new('lastName'),
             TextField::new('firstName'),
             EmailField::new('email'),
             TextField::new('plainPassword'),
             TextField::new('phone'),
             AssociationField::new('city'),
-            BooleanField::new('isAdministrator')
+            BooleanField::new('isAdministrator'),
             ];
     }
-
 }

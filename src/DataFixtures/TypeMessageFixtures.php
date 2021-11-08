@@ -10,9 +10,9 @@ class TypeMessageFixtures extends Fixture
 {
     public function load(ObjectManager $manager)
     {
-        $typeMessages = ["Demande d'adoption","Demande d'information"];
+        $typeMessages = ["Demande d'adoption", "Demande d'information"];
 
-        foreach ($typeMessages as $typeMessage){
+        foreach ($typeMessages as $typeMessage) {
             $tyMes = new TypeMessage();
             $tyMes->setName($typeMessage);
             $manager->persist($tyMes);
