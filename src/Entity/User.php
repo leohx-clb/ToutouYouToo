@@ -69,7 +69,7 @@ abstract class User implements UserInterface, PasswordAuthenticatedUserInterface
      * )
      * @Assert\Length(
      *     min="4",
-     *     max="50",
+     *     max="255",
      *     minMessage="Le mot de pass doit comporter au moins 10 caractéres",
      *     maxMessage="Le mot de pass ne doit pas comporter au plus 50 caractéres")
      */
@@ -95,6 +95,27 @@ abstract class User implements UserInterface, PasswordAuthenticatedUserInterface
      * @ORM\Column(type="string", length=10, nullable=true)
      */
     protected ?string $phone;
+
+    /**
+     * @var string|null
+     */
+    private ?string $plainPassword;
+
+    /**
+     * @return string|null
+     */
+    public function getPlainPassword(): ?string
+    {
+        return $this->plainPassword;
+    }
+
+    /**
+     * @param string|null $plainPassword
+     */
+    public function setPlainPassword(?string $plainPassword): void
+    {
+        $this->plainPassword = $plainPassword;
+    }
 
     public function getId(): ?int
     {
