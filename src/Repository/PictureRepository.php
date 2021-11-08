@@ -47,5 +47,4 @@ class PictureRepository extends ServiceEntityRepository
         ;
     }
     */
-
 }

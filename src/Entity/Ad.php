@@ -64,13 +64,14 @@ class Ad
 
     public function getPicturesAllDogs(): Collection
     {
-        $pictures = New ArrayCollection();
+        $pictures = new ArrayCollection();
         $dogs = $this->getDogs();
         foreach ($dogs as $dog) {
             foreach ($dog->getPictures() as $picture) {
                 $pictures->add($picture->getUrl());
             }
         }
+
         return $pictures;
     }
 

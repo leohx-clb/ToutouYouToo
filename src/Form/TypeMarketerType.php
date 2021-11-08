@@ -14,10 +14,10 @@ class TypeMarketerType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('name',TextType::class)
+            ->add('name', TextType::class)
         ;
-        if ($options['submit'] === true){
-            $builder->add('submit',SubmitType::class);
+        if (true === $options['submit']) {
+            $builder->add('submit', SubmitType::class);
         }
     }
 

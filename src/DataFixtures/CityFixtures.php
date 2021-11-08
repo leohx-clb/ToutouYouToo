@@ -14,27 +14,27 @@ class CityFixtures extends Fixture implements DependentFixtureInterface
 
     public function __construct(DepartmentRepository $departmentRepository)
     {
-       $this->departmentRepository = $departmentRepository;
+        $this->departmentRepository = $departmentRepository;
     }
 
     public function load(ObjectManager $manager): void
     {
         $cities = [
-            ['name'=> 'Nantes', 'zipCode' => '44000'],
-            ['name'=> 'Lyon', 'zipCode' => '69000'],
-            ['name'=> 'Paris', 'zipCode' => '75000'],
-            ['name'=> 'Marseille', 'zipCode' => '13000'],
-            ['name'=> 'Privas', 'zipCode' => '07000'],
-            ['name'=> 'Grenoble', 'zipCode' => '38000']
+            ['name' => 'Nantes', 'zipCode' => '44000'],
+            ['name' => 'Lyon', 'zipCode' => '69000'],
+            ['name' => 'Paris', 'zipCode' => '75000'],
+            ['name' => 'Marseille', 'zipCode' => '13000'],
+            ['name' => 'Privas', 'zipCode' => '07000'],
+            ['name' => 'Grenoble', 'zipCode' => '38000'],
         ];
         $departments = $this->departmentRepository->findAll();
-        $i=0;
-        foreach ($cities as $city){
+        $i = 0;
+        foreach ($cities as $city) {
             $dep = new City();
             $dep->setName($city['name']);
             $dep->setZipCode($city['zipCode']);
             $dep->setDepartment($departments[$i]);
-            $i++;
+            ++$i;
             $manager->persist($dep);
         }
         // $product = new Product();

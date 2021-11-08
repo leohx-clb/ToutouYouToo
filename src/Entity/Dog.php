@@ -35,7 +35,6 @@ class Dog
      * @Assert\Length(
      * max="255",
      * maxMessage="L'historique ne doit pas comporter au plus 255 caractéres")
-     *
      */
     private ?string $history;
 
@@ -91,7 +90,7 @@ class Dog
      *     minMessage="Le nom doit comporter au moins 3 caractéres ",
      *     maxMessage="Le nom ne doit pas comporter au plus 50 caractéres ")
      */
-    private ?string $name ='';
+    private ?string $name = '';
 
     /**
      * @ORM\Column(type="string", length=8)
@@ -297,7 +296,7 @@ class Dog
 
         return $this;
     }
-  
+
     public function __toString()
     {
         return $this->getName();

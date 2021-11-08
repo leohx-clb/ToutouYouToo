@@ -57,15 +57,16 @@ class Marketer extends User
         return $this;
     }
 
-    public function countAdsProvide (): int
+    public function countAdsProvide(): int
     {
         $i = 0;
         $ads = $this->getAds();
-        foreach ($ads as $ad){
-            if ($ad->getIsProvide()){
-                $i++;
+        foreach ($ads as $ad) {
+            if ($ad->getIsProvide()) {
+                ++$i;
             }
         }
+
         return $i;
     }
 

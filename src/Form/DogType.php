@@ -18,7 +18,7 @@ class DogType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('history',TextareaType::class , [
+            ->add('history', TextareaType::class, [
                 'label' => 'Historique ',
                 'required' => false,
             ])
@@ -27,15 +27,14 @@ class DogType extends AbstractType
                 'required' => false,
             ])
             ->add('description', TextareaType::class)
-            ->add('animalsFriendly', CheckboxType::class , [
+            ->add('animalsFriendly', CheckboxType::class, [
                 'label' => 'Accepte les autres animaux ? ',
                 'required' => false,
-
             ])
             ->add('name', TextType::class, [
                 'label' => 'Nom ',
             ])
-            ->add('sex', TextType::class,[
+            ->add('sex', TextType::class, [
                 'label' => 'Sexe ',
             ])
             ->add('races', EntityType::class, [
@@ -46,7 +45,7 @@ class DogType extends AbstractType
                 'expanded' => true,
                 'by_reference' => false,
             ])
-            ->add('pictures',CollectionType::class,[
+            ->add('pictures', CollectionType::class, [
                 'entry_type' => PictureType::class,
                 'allow_add' => true,
                 'by_reference' => false,
@@ -64,6 +63,5 @@ class DogType extends AbstractType
         $resolver->setRequired([
             'submit',
         ]);
-
     }
 }

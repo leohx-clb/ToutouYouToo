@@ -16,15 +16,14 @@ class RaceController extends AbstractController
      * @Route("/race", name="race")
      * @Route("/race/{id}/edit", name="edit_race")
      */
-    public function index(Request $request, EntityManagerInterface $em, ?Race $race=null): Response
+    public function index(Request $request, EntityManagerInterface $em, ?Race $race = null): Response
     {
-        if (!$race){
+        if (!$race) {
             $race = new Race();
         }
 
-
-        $form = $this->createForm(RaceType::class, $race,[
-            'submit' => true
+        $form = $this->createForm(RaceType::class, $race, [
+            'submit' => true,
         ]);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
@@ -33,9 +32,10 @@ class RaceController extends AbstractController
 
             return $this->redirectToRoute('race');
         }
+
         return $this->render('race/index.html.twig', [
             'form' => $form->createView(),
-            'race' => $race
+            'race' => $race,
         ]);
     }
 }

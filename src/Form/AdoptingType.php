@@ -16,14 +16,14 @@ class AdoptingType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('lastName',TextType::class)
-            ->add('firstName',TextType::class)
-            ->add('email',EmailType::class)
-            ->add('password',PasswordType::class)
+            ->add('lastName', TextType::class)
+            ->add('firstName', TextType::class)
+            ->add('email', EmailType::class)
+            ->add('password', PasswordType::class)
             ->add('city')
         ;
-        if ($options['submit'] === true){
-            $builder->add('submit',SubmitType::class);
+        if (true === $options['submit']) {
+            $builder->add('submit', SubmitType::class);
         }
     }
 

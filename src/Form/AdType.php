@@ -4,7 +4,6 @@ namespace App\Form;
 
 use App\Entity\Ad;
 use App\Entity\Dog;
-
 use Doctrine\ORM\EntityRepository;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
@@ -16,10 +15,10 @@ class AdType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('title', \Symfony\Component\Form\Extension\Core\Type\TextType::class,[
+            ->add('title', \Symfony\Component\Form\Extension\Core\Type\TextType::class, [
                 'label' => 'Titre',
             ])
-            ->add('description', \Symfony\Component\Form\Extension\Core\Type\TextType::class,[
+            ->add('description', \Symfony\Component\Form\Extension\Core\Type\TextType::class, [
                 'label' => 'Description',
             ])
             ->add('dogs', EntityType::class, [

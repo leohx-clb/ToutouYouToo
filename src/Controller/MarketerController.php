@@ -3,7 +3,6 @@
 namespace App\Controller;
 
 use App\Entity\Marketer;
-use App\Form\AdType;
 use App\Form\MarketerType;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;

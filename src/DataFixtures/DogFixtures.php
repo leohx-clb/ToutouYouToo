@@ -12,7 +12,6 @@ use Doctrine\Persistence\ObjectManager;
 
 class DogFixtures extends Fixture implements DependentFixtureInterface
 {
-
     private RaceRepository $raceRepository;
 
     public function __construct(RaceRepository $raceRepository)
@@ -21,7 +20,7 @@ class DogFixtures extends Fixture implements DependentFixtureInterface
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     public function load(ObjectManager $manager)
     {
@@ -49,8 +48,7 @@ class DogFixtures extends Fixture implements DependentFixtureInterface
             'Femelle',
         ];
 
-
-        foreach ($races as $key => $race){
+        foreach ($races as $key => $race) {
             $picture = new Picture();
             $picture->setUrl($urlPictures[$key]);
 

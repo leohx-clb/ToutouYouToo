@@ -10,12 +10,13 @@ use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 
 class UserUpdateSubscriber implements EventSubscriberInterface
 {
-
     private UserPasswordHasherInterface $encoder;
 
-    public function __construct(UserPasswordHasherInterface $encoder){
+    public function __construct(UserPasswordHasherInterface $encoder)
+    {
         $this->encoder = $encoder;
     }
+
     /**
      * @param BeforeEntityPersistedEvent|BeforeEntityUpdatedEvent $event
      */
@@ -23,11 +24,11 @@ class UserUpdateSubscriber implements EventSubscriberInterface
     {
         $user = $event->getEntityInstance();
 
-        if (!$user instanceof User){
+        if (!$user instanceof User) {
             return;
         }
 
-        if (!empty($user->getPlainPassword())){
+        if (!empty($user->getPlainPassword())) {
             $pwd = $this->encoder->hashPassword($user, $user->getPlainPassword());
             $user->setPassword($pwd);
         }

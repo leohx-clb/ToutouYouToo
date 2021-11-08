@@ -16,7 +16,7 @@ class AdoptingFixtures extends Fixture implements DependentFixtureInterface
 
     public function __construct(CityRepository $cityRepository, UserPasswordHasherInterface $hasher)
     {
-       $this->cityRepository = $cityRepository;
+        $this->cityRepository = $cityRepository;
         $this->hasher = $hasher;
     }
 
@@ -24,38 +24,38 @@ class AdoptingFixtures extends Fixture implements DependentFixtureInterface
     {
         $adoptings = [
             [
-                'lastName'=> 'admin',
+                'lastName' => 'admin',
                 'firstName' => 'admin',
                 'email' => 'admin.admin@admin.com',
                 'password' => 'admin',
-                'name' => 'admin'
+                'name' => 'admin',
             ],
             [
-                'lastName'=> 'admin',
+                'lastName' => 'admin',
                 'firstName' => 'Robert',
                 'email' => 'robert.redford@gmail.com',
                 'password' => 'toto',
-                'name' => 'Robert Redford'
+                'name' => 'Robert Redford',
             ],
             [
-                'lastName'=> 'Travolta',
+                'lastName' => 'Travolta',
                 'firstName' => 'John',
                 'email' => 'john.travolta@gmail.com',
                 'password' => 'toto',
-                'name' => 'John Travolta'
+                'name' => 'John Travolta',
             ],
             [
-                'lastName'=> 'Gabble',
+                'lastName' => 'Gabble',
                 'firstName' => 'Clark',
                 'email' => 'clark.gabble@gmail.com',
                 'password' => 'toto',
-                'name' => 'Clark Gabble'
-            ]
+                'name' => 'Clark Gabble',
+            ],
          ];
         $cities = $this->cityRepository->findAll();
-        $i=0;
-        foreach ($adoptings as $adopting){
-        $ad = new Adopting();
+        $i = 0;
+        foreach ($adoptings as $adopting) {
+            $ad = new Adopting();
             $ad->setFirstName($adopting['firstName']);
             $ad->setlastName($adopting['lastName']);
             $ad->setEmail($adopting['email']);
@@ -63,11 +63,11 @@ class AdoptingFixtures extends Fixture implements DependentFixtureInterface
             $pwd = $this->hasher->hashPassword($ad, $adopting['password']);
             $ad->setpassword($pwd);
 //            permet de mettre le premier adoptant de la list ene admin
-            if ($i == 0 ){
+            if (0 == $i) {
                 $ad->setIsAdministrator(true);
             }
             $ad->setcity($cities[$i]);
-            $i++;
+            ++$i;
             $manager->persist($ad);
         }
         // $product = new Product();

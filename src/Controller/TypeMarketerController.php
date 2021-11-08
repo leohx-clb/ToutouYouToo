@@ -18,8 +18,8 @@ class TypeMarketerController extends AbstractController
     public function index(Request $request, EntityManagerInterface $em): Response
     {
         $typeMarketer = new TypeMarketer();
-        $form = $this->createForm(TypeMarketerType::class, $typeMarketer,[
-            'submit' => true
+        $form = $this->createForm(TypeMarketerType::class, $typeMarketer, [
+            'submit' => true,
         ]);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
@@ -28,6 +28,7 @@ class TypeMarketerController extends AbstractController
 
             return $this->redirectToRoute('type_marketer');
         }
+
         return $this->render('type_marketer/index.html.twig', [
             'form' => $form->createView(),
         ]);

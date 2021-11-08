@@ -9,7 +9,7 @@ use Doctrine\Persistence\ObjectManager;
 class RaceFixtures extends Fixture
 {
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     public function load(ObjectManager $manager)
     {
@@ -19,7 +19,6 @@ class RaceFixtures extends Fixture
             'Husky de Sibérie',
             'Shiba Inu',
         ];
-
 
         foreach ($raceNames as $raceName) {
             $race = new Race();
