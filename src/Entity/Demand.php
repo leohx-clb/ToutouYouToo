@@ -25,7 +25,7 @@ class Demand
     private $dateDemand;
 
     /**
-     * @ORM\OneToMany(targetEntity=Message::class, mappedBy="demand")
+     * @ORM\OneToMany(targetEntity=Message::class, mappedBy="demand", cascade={"persist"})
      */
     private $messages;
 

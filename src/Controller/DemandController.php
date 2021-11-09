@@ -19,18 +19,19 @@ use Symfony\Component\Routing\Annotation\Route;
 class DemandController extends AbstractController
 {
     /**
-     * @Route("/demand", name="demand")
+     * @Route("/demand/{id}", name="demand")
      */
-    public function index(Request $request, EntityManagerInterface $em, AdRepository $adRepository): Response
+    public function index(Request $request, EntityManagerInterface $em, AdRepository $adRepository,  int $id): Response
     {
         /** @var Adopting $adopting */
         $adopting = $this->getUser();
-        $id = 14;
         $ad = $adRepository->find($id);
         $demand = new Demand();
         $demand->setAd($ad);
+        $demand->setAdopting($adopting);
         $demand->setDateDemand(new DateTime());
         $message = new Message();
+        $message->setDateMessage(new DateTime());
         $demand->addMessage($message);
 
         $form = $this->createForm(DemandType::class, $demand, [

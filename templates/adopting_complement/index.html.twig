@@ -1,0 +1,24 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Adopting complement{% endblock %}
+
+{% block body %}
+<h1 class="text-center">Veuillez renseignez vos coordonnées</h1>
+<div class="d-flex justify-content-center mt-5">
+    <div  class="col-6">
+        {{ form_start(form, {'attr':{'novalidate':'novalidate'}}) }}
+
+        {{ form_row(form.lastName) }}
+
+        {{ form_row(form.firstName) }}
+
+        {{ form_row((form.phone)) }}
+
+        {{ form_row(form.city) }}
+
+        {% if form.submit is defined %}
+            {{ form_row(form.submit) }}
+        {% endif %}
+
+        {{ form_end(form) }}
+{% endblock %}

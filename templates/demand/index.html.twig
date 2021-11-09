@@ -6,8 +6,11 @@
 <h1 class="text-center">Création d'une demande d'adoption</h1>
 <div class="d-flex justify-content-center mt-5">
     {{ form_start(form, {'attr':{'novalidate':'novalidate'}}) }}
-
-
+    {{ form_row(form.dogs) }}
+    <h3>Saisissez un message</h3>
+    <div class="d-flex justify-content-center mt-4">
+        {{ form_row(form.messages) }}
+    </div>
     {% if form.submit is defined %}
         {{ form_row(form.submit) }}
     {% endif %}

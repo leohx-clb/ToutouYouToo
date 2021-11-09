@@ -18,19 +18,24 @@ class DemandType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $ad = $options['ad'];
+        dump($ad);
         $builder
-            ->add('dateDemand')
-            ->add('adopting')
-            ->add('ad')
             ->add('dogs', EntityType::class, [
                 'class' => Dog::class,
-                'query_builder' => function (EntityRepository $er) {
+                'label' => 'Chiens de l\'annonce ',
+                'query_builder' => function (EntityRepository $er) use ($ad) {
                     return $er->createQueryBuilder('d')
-                        ->where('d.ad = $ad and d.isAvailable = true')
+                        ->where('d.ad = :ad and d.isAvailable = true')
+                        ->setParameter('ad', $ad)
                         ->orderBy('d.name');
                 },
                 'multiple' => true,
                 'expanded' => true,
+                'by_reference' => false,
+            ])
+            ->add('messages', CollectionType::class, [
+                'entry_type' => MessageType::class,
+                'allow_add' => true,
                 'by_reference' => false,
             ])
         ;
@@ -44,6 +49,7 @@ class DemandType extends AbstractType
         $resolver->setDefaults([
             'data_class' => Demand::class,
             'submit' => false,
+            'ad' => null,
         ]);
     }
 }

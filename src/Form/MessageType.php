@@ -15,8 +15,6 @@ class MessageType extends AbstractType
     {
         $builder
             ->add('content', TextType::class)
-            ->add('dateMessage', DateType::class)
-            ->add('demand', TextType::class)
             ->add('typeMessage')
         ;
     }
