@@ -69,9 +69,8 @@ abstract class User implements UserInterface, PasswordAuthenticatedUserInterface
      * )
      * @Assert\Length(
      *     min="4",
-     *     max="255",
-     *     minMessage="Le mot de pass doit comporter au moins 10 caractéres",
-     *     maxMessage="Le mot de pass ne doit pas comporter au plus 50 caractéres")
+     *     minMessage="Le mot de pass doit comporter au moins 10 caractéres"
+     * )
      */
     protected ?string $password;
 

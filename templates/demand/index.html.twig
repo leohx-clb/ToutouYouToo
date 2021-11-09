@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello DemandController!{% endblock %}
+
+{% block body %}
+<h1 class="text-center">Création d'une demande d'adoption</h1>
+<div class="d-flex justify-content-center mt-5">
+    {{ form_start(form, {'attr':{'novalidate':'novalidate'}}) }}
+
+
+    {% if form.submit is defined %}
+        {{ form_row(form.submit) }}
+    {% endif %}
+
+    {{ form_end(form) }}
+</div>
+{% endblock %}
